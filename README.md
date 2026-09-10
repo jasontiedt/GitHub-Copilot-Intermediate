@@ -51,18 +51,18 @@ The web app talks to the API at `http://localhost:8000`.
 
 ## 📚 The workshop
 
-Work through the modules in order. Each is intermediate→advanced, staged (guided → 🧗 challenge), ends by opening a **Pull Request** and requesting a **Copilot review**, and leaves your team with a reusable artifact.
+Work through the modules in order. Each is intermediate→advanced and **timeboxed to ~20–30 min of core work** (guided stages), with optional 🧧 stretch stages for extra depth. Every module ends by opening a **Pull Request** and requesting a **Copilot review**, and leaves your team with a reusable artifact.
 
-| # | Module | You'll build | Est. |
+| # | Module | You'll build | Core |
 | - | ------ | ------------ | ---- |
 | 0 | [Setup & Orientation](modules/00-setup.md) | A tour of the code + its rough edges | ~10 min |
-| 1 | [Team-Scale Custom Instructions](modules/01-team-instructions.md) | Repo-wide + path-scoped instructions your whole team benefits from | ~45 min |
-| 2 | [Designing a Reusable Prompt Library](modules/02-prompt-library.md) | An onboarding prompt library anyone can run day one | ~45 min |
-| 3 | [Code Review Mastery](modules/03-code-review.md) | Review standards + a Reviewer agent + PR template | ~45 min |
-| 4 | [Coding Agent at Scale](modules/04-coding-agent.md) | Agent-ready issues, custom agents, MCP, agent env | ~50 min |
-| 5 | [Capstone: Roll It Out to Your Team](modules/05-capstone.md) | A rollout plan that ties it all together | ~40 min |
+| 1 | [Team-Scale Custom Instructions](modules/01-team-instructions.md) | Repo-wide + path-scoped instructions your whole team benefits from | ~30 min |
+| 2 | [Designing a Reusable Prompt Library](modules/02-prompt-library.md) | An onboarding prompt library anyone can run day one | ~25 min |
+| 3 | [Code Review Mastery](modules/03-code-review.md) | Review standards + a Reviewer agent + PR template | ~25 min |
+| 4 | [Coding Agent at Scale](modules/04-coding-agent.md) | Agent-ready issues, custom agents, MCP, agent env | ~25 min |
+| 5 | [Capstone: Roll It Out to Your Team](modules/05-capstone.md) | A rollout plan that ties it all together | ~30 min |
 
-See the [module index](modules/README.md) for details.
+See the [module index](modules/README.md) for details. Times are the **core** path; each module's optional 🧧 stretch stages add ~10–18 min if you want the deeper hands-on.
 
 ## 🔁 How the workshop works
 

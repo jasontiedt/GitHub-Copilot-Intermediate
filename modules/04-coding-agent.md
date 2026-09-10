@@ -2,7 +2,7 @@
 
 **Goal:** Delegate real work to the **Copilot coding agent** and get good results — which is mostly a skill of **scoping and writing agent-ready issues**, plus giving the agent the right **tools (MCP)**, **environment**, and **custom agents**. You'll fix TaskFlow's planted `top_priority` bug *by delegation*, not by hand.
 
-**Estimated Time:** ~50 minutes
+**Estimated Time:** ~25 min core (Stages 1–3 + ship). **Optional stretch:** Stages 4–5 (+~18 min).
 **Branch:**
 ```bash
 git checkout main && git pull
@@ -66,7 +66,7 @@ Then draft an issue for the planted bug using it — e.g. *"`/focus` returns the
 
 **✅ Checkpoint:** A correct, tested fix — delegated, not hand-written.
 
-## 🧗 Stage 4 (Challenge): Custom agents + MCP (10 min)
+## 🧧 Stage 4 (Optional stretch): Custom agents + MCP (+10 min)
 
 **Your goal:** Give the agent sharper tools.
 
@@ -88,7 +88,7 @@ Create the agent via `/agents` → **New Agent** with read + edit + test tools. 
 
 </details>
 
-## 🧗 Stage 5 (Challenge): Give the agent an environment (8 min)
+## 🧧 Stage 5 (Optional stretch): Give the agent an environment (+8 min)
 
 **Your goal:** Ensure the coding agent (and Copilot code review) can build and test TaskFlow by preinstalling dependencies.
 
@@ -126,9 +126,9 @@ jobs:
 ## ✅ Completion Checklist
 - [ ] Created an agent-ready issue template
 - [ ] Delegated the `top_priority` fix and reviewed the agent's PR
-- [ ] Built a focused custom agent
-- [ ] Configured MCP and created an issue through it
-- [ ] Added `copilot-setup-steps.yml`
+- [ ] *(Optional stretch)* Built a focused custom agent
+- [ ] *(Optional stretch)* Configured MCP and created an issue through it
+- [ ] *(Optional stretch)* Added `copilot-setup-steps.yml`
 - [ ] Opened a PR and got a Copilot review
 
 ## 🔀 Try it another way

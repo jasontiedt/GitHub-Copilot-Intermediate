@@ -2,7 +2,7 @@
 
 **Goal:** Turn TaskFlow's thin, generic `copilot-instructions.md` into layered instructions that make Copilot follow *your team's* conventions automatically. Good instructions are one of the most useful things a team can set up: write them once, and every response gets better.
 
-**Estimated Time:** ~45 minutes
+**Estimated Time:** ~30 min core (Stages 1–3, 5 + ship). **Optional stretch:** Stage 4 (+~8 min).
 **Branch:**
 ```bash
 git checkout main && git pull
@@ -29,7 +29,7 @@ Watch what Copilot produces. Because the instructions are thin, it likely return
 
 **✅ Checkpoint:** You've seen that weak instructions → weak defaults.
 
-## 🎯 Stage 2: Write lean repo-wide instructions (8 min)
+## 🎯 Stage 2: Write lean repo-wide instructions (7 min)
 
 **1.** Draft from the codebase: type `/init` in chat (or **Configure Chat** ⚙ → **Generate Instructions**). It analyzes the repo and proposes a `copilot-instructions.md`.
 
@@ -57,7 +57,7 @@ and a **FastAPI (Python)** backend in `api/`. The web app calls the API at `http
 
 **✅ Checkpoint:** A short, specific, repo-wide instruction file.
 
-## 🎯 Stage 3: Add path-scoped instructions (8 min)
+## 🎯 Stage 3: Add path-scoped instructions (7 min)
 
 Repo-wide rules apply everywhere; **path-scoped** rules apply only to matching files via an `applyTo` glob. Create these:
 
@@ -87,7 +87,7 @@ applyTo: "api/**/*.py"
 
 **✅ Checkpoint:** Editing a `.tsx` or `.py` file, the matching rules now apply automatically.
 
-## 🧗 Stage 4 (Challenge): Author the remaining layers (8 min)
+## 🧧 Stage 4 (Optional stretch): Author the remaining layers (+8 min)
 
 **Your goal:** Add two more artifacts that round out the team's context.
 
@@ -121,7 +121,7 @@ This time it should validate the id, raise `HTTPException(404)`, and type the we
 ## ✅ Completion Checklist
 - [ ] Rewrote `copilot-instructions.md` to be lean and specific
 - [ ] Added `web` and `api` path-scoped instructions
-- [ ] Added tests instructions + `AGENTS.md`
+- [ ] *(Optional stretch)* Added tests instructions + `AGENTS.md`
 - [ ] Verified improved output via References
 - [ ] Opened a PR and got a Copilot review
 

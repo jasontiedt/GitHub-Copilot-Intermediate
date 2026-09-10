@@ -2,7 +2,7 @@
 
 **Goal:** Build a **prompt library** that turns your team's common tasks into one-command slash prompts — so anyone joining the project can be productive on day one. Instructions shape *every* response; **prompt files** handle *specific, repeatable tasks* you run on demand.
 
-**Estimated Time:** ~45 minutes
+**Estimated Time:** ~25 min core (Stages 1–3 + ship). **Optional stretch:** Stages 4–5 (+~15 min).
 **Branch:**
 ```bash
 git checkout main && git pull
@@ -74,7 +74,7 @@ Try it: `/scaffold-component TaskFilter that filters the list by status`.
 
 **✅ Checkpoint:** Generated components follow your web conventions by default.
 
-## 🧗 Stage 4 (Challenge): The onboarding prompt (10 min)
+## 🧧 Stage 4 (Optional stretch): The onboarding prompt (+10 min)
 
 **Your goal:** Create `.github/prompts/onboard-me.prompt.md` — the *first thing* a new hire runs. It should explain the repo without them reading every file.
 
@@ -90,7 +90,7 @@ Create it via `/prompts` → **New Prompt** (or `/create-prompt`). Have the body
 
 </details>
 
-## 🧗 Stage 5 (Challenge): A workflow prompt — prep a PR (6 min)
+## 🧧 Stage 5 (Optional stretch): A workflow prompt — prep a PR (+6 min)
 
 **Your goal:** Create `.github/prompts/prep-pr.prompt.md` that gets a change ready to ship.
 
@@ -111,8 +111,8 @@ Use the `changes` context and `agent: 'agent'`. Body: "Summarize staged changes,
 
 ## ✅ Completion Checklist
 - [ ] Built `scaffold-endpoint` and `scaffold-component`
-- [ ] Built the `onboard-me` prompt
-- [ ] Built `prep-pr`
+- [ ] *(Optional stretch)* Built the `onboard-me` prompt
+- [ ] *(Optional stretch)* Built `prep-pr`
 - [ ] Opened a PR and got a Copilot review
 
 ## 🔀 Try it another way

@@ -2,7 +2,7 @@
 
 **Goal:** Bring everything together into a **team rollout plan** — the artifacts and the written plan that make Copilot a consistent, measurable part of how your team works. By the end you'll have a reusable `.github/` pack plus a plan you could hand to any team.
 
-**Estimated Time:** ~40 minutes
+**Estimated Time:** ~30 min core (Stages 1, 3–5 + ship). **Optional stretch:** Stage 2 (+~10 min).
 **Branch:**
 ```bash
 git checkout main && git pull
@@ -34,7 +34,7 @@ Ask Copilot: *"Review my `.github/` customization files for overlap, contradicti
 
 **✅ Checkpoint:** No duplicated or conflicting rules across the pack.
 
-## 🧗 Stage 2 (Challenge): Add supporting team files (10 min)
+## 🧧 Stage 2 (Optional stretch): Add supporting team files (+10 min)
 
 **Your goal:** Make the standards enforceable, not just advisory.
 
@@ -49,7 +49,7 @@ Ask Agent mode to "add a CI workflow that runs the api tests and the web typeche
 
 </details>
 
-## 🧗 Stage 3 (Challenge): Write the rollout plan (10 min)
+## 🎯 Stage 3: Write the rollout plan (10 min)
 
 **Your goal:** Create `ROLLOUT.md` at the repo root — the plain-English plan.
 
@@ -89,7 +89,7 @@ Decide how you'll keep this alive:
 
 ## ✅ Completion Checklist
 - [ ] Audited and assembled the `.github/` pack
-- [ ] Added CODEOWNERS + CI + issue templates
+- [ ] *(Optional stretch)* Added CODEOWNERS + CI + issue templates
 - [ ] Wrote `ROLLOUT.md`
 - [ ] Created a Copilot Space
 - [ ] Defined metrics + a refresh schedule

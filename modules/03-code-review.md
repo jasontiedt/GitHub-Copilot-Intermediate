@@ -2,7 +2,7 @@
 
 **Goal:** Make code review faster and more consistent with Copilot — from inline review while you code, to a **Copilot review on the PR**, to **writing down your team's review standards** so every review (human or AI) checks the same things. TaskFlow's planted bugs and gaps give you plenty to catch.
 
-**Estimated Time:** ~45 minutes
+**Estimated Time:** ~25 min core (Stages 1–3 + ship). **Optional stretch:** Stages 4–5 (+~14 min).
 **Branch:**
 ```bash
 git checkout main && git pull
@@ -54,7 +54,7 @@ Now run a Source Control review over `api/taskflow/service.py` and `web/src/api.
 
 **✅ Checkpoint:** Copilot review flags the planted issues, not just generic ones.
 
-## 🧗 Stage 4 (Challenge): A Reviewer agent (8 min)
+## 🧧 Stage 4 (Optional stretch): A Reviewer agent (+8 min)
 
 **Your goal:** Build a reusable **Reviewer** agent tuned to TaskFlow that reviews changes and **never edits code**.
 
@@ -70,7 +70,7 @@ Create it via `/agents` → **New Agent**. Give it `tools: ['search/codebase', '
 
 </details>
 
-## 🧗 Stage 5 (Challenge): A review skill + PR template (6 min)
+## 🧧 Stage 5 (Optional stretch): A review skill + PR template (+6 min)
 
 **Your goal:** Make your standards discoverable to Copilot's PR reviewer *and* to humans.
 
@@ -93,7 +93,7 @@ The skill's frontmatter needs `name` and `description`. Keep the checklist ident
 - [ ] Used inline + Source Control review
 - [ ] Ran a Copilot PR review and triaged by severity
 - [ ] Added `code-review.instructions.md`
-- [ ] Built a Reviewer agent + review skill + PR template
+- [ ] *(Optional stretch)* Built a Reviewer agent + review skill + PR template
 - [ ] Opened a PR and got a Copilot review
 
 ## 🔀 Try it another way

@@ -14,7 +14,7 @@ Six modules that take Copilot from individual use to a **team standard** for the
 ## 🔁 How each module works
 
 - **Branch per module:** `git checkout -b USERNAME/module-N-...`
-- **Stages ramp up:** early stages give you the exact steps; later **🧗 Challenge** stages give you a goal + success criteria and let *you* drive (with a collapsible hint).
+- **Timeboxed with optional depth:** the **core** stages fit in ~20–30 min and give you the exact steps; the later **🧧 optional stretch** stages give you a goal + success criteria and let *you* drive (with a collapsible hint) — do them in-session if you have time, or take them home.
 - **🧠 Advanced sidebars** go deeper for those who want the org-scale picture.
 - **Practice a Copilot review:** end each module by pushing your branch, opening a PR, and requesting a **Copilot review** (under **Reviewers**, next to **Copilot**, click **Request**) — the goal is the review practice, not a perfect PR.
 - **Keep your artifacts:** everything under `.github/` is portable to your real repos.
