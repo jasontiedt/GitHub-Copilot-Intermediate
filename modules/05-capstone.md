@@ -95,6 +95,11 @@ Decide how you'll keep this alive:
 - [ ] Defined metrics + a refresh schedule
 - [ ] Opened a PR and got a Copilot review
 
+## 🔀 Try it another way
+Even the rollout has options — try a couple as you assemble the pack:
+- **Audit it two ways:** ask Copilot to review your `.github/` pack for overlap, then run the same pack past the **Reviewer agent** you built in Module 3. Two lenses on the same files.
+- **Share context two ways:** a **Copilot Space** packages context on github.com; the committed `.github/` pack + `AGENTS.md` travels with the repo. Try both and decide which your team leans on.
+
 ## 🎉 You're done!
 
 You've turned a messy polyglot repo into one with **team-wide instructions**, a **reusable prompt library**, **written-down review standards**, **agent-ready delegation**, and a **rollout plan** — all reusable in your real projects.

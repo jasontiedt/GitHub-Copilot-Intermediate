@@ -66,5 +66,10 @@ git checkout -b USERNAME/module-1-instructions
 - [ ] Confirmed Copilot is active
 - [ ] Know the branch-per-module flow
 
+## 🔀 Try it another way
+Same orientation, different Copilot surfaces — try both and notice what each is good at:
+- **Inline vs. chat:** instead of `#codebase` in the Chat view, put your cursor in `api/taskflow/service.py` and press **Ctrl+I** (inline chat): *"Explain what this file does."* Inline is quick for one file; `#codebase` is better for the whole repo.
+- **Second opinion:** switch the chat **model picker** to a different model and re-ask the tour question. Seeing how the answers differ is handy later when you want a second read on a bigger change.
+
 ## 🏁 What's Next?
 Continue to [Module 1: Team-Scale Custom Instructions](01-team-instructions.md).

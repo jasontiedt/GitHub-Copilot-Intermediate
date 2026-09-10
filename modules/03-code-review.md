@@ -96,6 +96,11 @@ The skill's frontmatter needs `name` and `description`. Keep the checklist ident
 - [ ] Built a Reviewer agent + review skill + PR template
 - [ ] Opened a PR and got a Copilot review
 
+## 🔀 Try it another way
+Copilot review shows up in several places — run the same change through a couple and see what each catches:
+- **Three surfaces, one bug:** review `top_priority` as an inline selection, then via **Source Control → Code Review**, then on a **PR**. The PR review sees the whole change; inline stays tightly focused.
+- **Agent vs. instructions:** review a diff with just your `code-review.instructions.md` in place, then again using your **Reviewer agent**. Compare how the findings are organized.
+
 ## 🧠 Advanced sidebar
 
 - **Automatic reviews:** repository/org **rulesets** can make Copilot review *every* PR, and optionally re-review new pushes.

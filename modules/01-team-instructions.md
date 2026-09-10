@@ -125,6 +125,11 @@ This time it should validate the id, raise `HTTPException(404)`, and type the we
 - [ ] Verified improved output via References
 - [ ] Opened a PR and got a Copilot review
 
+## 🔀 Try it another way
+There's more than one path to good instructions — try a couple and keep what sticks:
+- **Generate vs. hand-write:** you used `/init`. Now try the opposite — write five rules by hand from the review comments your team actually leaves, then ask Copilot to *"tighten these into a short instructions file."* Compare which reads better.
+- **One file vs. layered:** fold your path-scoped rules back into the single `copilot-instructions.md`, then split them out again. Open **References** each time to see which approach Copilot actually pulls in for a `.tsx` vs. a `.py` edit.
+
 ## 🧠 Advanced sidebar
 
 - **Precedence:** personal (user) → repository (`copilot-instructions.md` / `AGENTS.md`) → organization. Higher-priority wins on conflict.

@@ -115,6 +115,11 @@ Use the `changes` context and `agent: 'agent'`. Body: "Summarize staged changes,
 - [ ] Built `prep-pr`
 - [ ] Opened a PR and got a Copilot review
 
+## 🔀 Try it another way
+Prompts aren't the only way to package a task — compare a couple:
+- **Prompt file vs. ad-hoc:** run `/scaffold-endpoint GET /tasks/{id}`, then in a fresh chat describe the same task by hand. The prompt should win on consistency — that's the whole point of turning it into one.
+- **Author it two ways:** hand-write a `.prompt.md`, or run `/create-prompt` and let Copilot scaffold the frontmatter for you. Try both on your `prep-pr` prompt and keep the cleaner result.
+
 ## 🧠 Advanced sidebar
 
 - **Prompts vs. instructions vs. skills vs. agents:** *instructions* shape every response; *prompts* run a specific task on demand; *skills* are reference knowledge Copilot pulls in when relevant; *custom agents* bundle instructions + tools into a mode. Use the [customization decision matrix](https://code.visualstudio.com/docs/agents/concepts/customization) when unsure.

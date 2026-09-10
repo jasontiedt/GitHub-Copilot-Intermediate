@@ -131,6 +131,11 @@ jobs:
 - [ ] Added `copilot-setup-steps.yml`
 - [ ] Opened a PR and got a Copilot review
 
+## 🔀 Try it another way
+Delegation has a few front doors — try a couple and pick your default:
+- **Local vs. background:** fix `top_priority` yourself in **Agent** mode first, then delegate the same bug to the **coding agent** and compare the diffs. One is instant; the other frees you up and opens a reviewable PR.
+- **Web UI vs. MCP:** create the task issue on github.com, then create an equivalent one *through* the GitHub MCP server from chat. Same result, two workflows — handy when you want to stay in the editor.
+
 ## 🧠 Advanced sidebar
 
 - **Subagents:** a custom agent can delegate to other agents for multi-step work — useful for large refactors.
