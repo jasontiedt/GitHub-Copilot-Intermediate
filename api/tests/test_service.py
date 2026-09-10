@@ -1,5 +1,5 @@
 from taskflow.store import TaskStore
-from taskflow.service import list_tasks, create_task, stats
+from taskflow.service import list_tasks, create_task, stats, top_priority
 
 
 def test_list_all():
@@ -24,3 +24,11 @@ def test_stats_totals():
     store = TaskStore()
     s = stats(store)
     assert s["todo"] + s["in_progress"] + s["done"] == 7
+
+
+def test_top_priority_returns_highest_first_ties_by_id():
+    store = TaskStore()
+    top = top_priority(store, 3)
+    # Tasks 1 and 7 both have priority 5; task 1 should come before task 7.
+    assert [t.id for t in top] == [1, 7, 2]
+    assert [t.priority for t in top] == [5, 5, 4]
