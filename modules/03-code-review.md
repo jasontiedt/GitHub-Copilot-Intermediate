@@ -1,6 +1,6 @@
 # Module 3: Code Review Mastery
 
-**Goal:** Make code review faster and more consistent with Copilot — from inline review while you code, to a **Copilot review on the PR**, to **writing down your team's review standards** so every review (human or AI) checks the same things. TaskFlow's planted bugs and gaps give you plenty to catch.
+**Goal:** Make code review faster and more consistent with Copilot — from inline review while you code, to a **Copilot review on the PR**, to **writing down your team's review standards** so every review (human or AI) checks the same things. TaskFlow's planted bugs — plus a ready-made **`review-practice`** PR — give you plenty to catch.
 
 **Estimated Time:** ~25 min core (Stages 1–3 + ship). **Optional stretch:** Stages 4–5 (+~15 min).
 **Branch:**
@@ -11,6 +11,7 @@ git checkout -b USERNAME/module-3-review
 
 ## What You'll Learn
 - [ ] Use inline review, Source Control review, and **Copilot PR review**
+- [ ] Review a **planted PR** (`review-practice`) and score what Copilot catches
 - [ ] Encode custom **review criteria** so Copilot catches *your* issues
 - [ ] Build a **Reviewer agent** plus **skills** (a review skill + a domain skill) tuned to this repo
 - [ ] Standardize with a PR template
@@ -24,14 +25,40 @@ git checkout -b USERNAME/module-3-review
 
 **✅ Checkpoint:** You've reviewed a selection and a set of changes locally.
 
-## 🎯 Stage 2: Copilot review on a PR (7 min)
+## 🎯 Stage 2: Copilot review on a planted PR (7 min)
 
-**1.** Make a real change to review — e.g., ask Agent mode to *"add a `GET /tasks/{id}` endpoint and a web client function"* (it'll likely have gaps).
-**2.** Commit, push, and open a PR.
-**3.** Under **Reviewers**, next to **Copilot**, click **Request**. Pick a **review effort** (Lite vs. Balanced) if offered.
-**4.** Triage: each comment is labeled **High / Medium / Low**. Resolve, reply, or click **Apply suggestion**.
+This repo ships a branch — **`review-practice`** — that adds a "task search + bulk-complete" feature with **problems deliberately planted** across security, correctness, and TypeScript quality. Review it *with Copilot's help* and see how many you catch.
 
-**✅ Checkpoint:** A Copilot review on your PR, with at least one suggestion applied.
+**1.** Once the branch is on GitHub, open a PR from `review-practice` into `main` (**Compare & pull request**).
+**2.** Under **Reviewers**, next to **Copilot**, click **Request**. Pick a **review effort** (Lite vs. Balanced) if offered.
+**3.** Read the review. Each comment is labeled **High / Medium / Low** — triage them: resolve, reply, or **Apply suggestion**.
+**4.** **Score it:** how many of the planted problems did Copilot find on its own? Note what it missed — you'll close that gap in Stage 3.
+
+<details><summary>🔑 Facilitator answer key — the planted problems</summary>
+
+**Security**
+- Hard-coded secret `ADMIN_TOKEN` in `api/taskflow/search.py`.
+- `/admin/logs` takes a `token` in the **query string** (leaks into logs/history) and returns every user's search log — broken access control + data exposure.
+- `/admin/logs` returns `200` with `{"error": "forbidden"}` instead of `403`.
+- `POST /tasks/bulk-complete` mutates data with **no auth**.
+- `TaskSearch.tsx` renders server data with `dangerouslySetInnerHTML` → **XSS**.
+
+**Correctness**
+- `search_tasks` uses a **mutable default argument** (`tags=[]`).
+- `search_tasks` can add the **same task twice**, is case-sensitive, and matches everything on an empty query.
+- `bulk_complete` has a **bare `except: pass`** and no `None` check on a missing id.
+
+**API design & types**
+- `BulkComplete.ids` is an **untyped `list`** (should be `list[int]`); `q` isn't length-limited.
+- `any` return/param types in `web/src/api.ts` and `any[]` state in the component.
+
+**Quality**
+- **Hard-coded URL** instead of `BASE`; query built by string concat without `encodeURIComponent`; **no `res.ok`/error handling**; no loading state; missing React `key`.
+- **No tests** for any of the new logic.
+
+</details>
+
+**✅ Checkpoint:** A Copilot review on the planted PR, triaged by severity, plus a rough count of what it caught vs. missed.
 
 ## 🎯 Stage 3: Encode your review criteria (8 min)
 
@@ -44,15 +71,16 @@ applyTo: "**"
 ---
 # What reviewers (human and Copilot) must flag
 - Any `any` in TypeScript, or missing loading/error handling on async UI.
-- API routes that don't validate input or don't raise specific HTTP errors.
+- `dangerouslySetInnerHTML` or any unescaped user/server content rendered to the DOM.
+- API routes that don't validate input, don't raise specific HTTP errors, or mutate data without auth.
+- Secrets in code, tokens passed in URLs/query strings, or a bare `except:` that hides errors.
 - Ranking/sorting logic — confirm direction and tie-breaking are correct.
-- Logic changes without a matching test.
-- Hard-coded URLs, secrets, or magic numbers.
+- Logic changes without a matching test; hard-coded URLs or magic numbers.
 ```
 
-Now run a Source Control review over `api/taskflow/service.py` and `web/src/api.ts`. It should now call out the `top_priority` sort direction, the missing validation, and the `any` returns.
+Now **re-review the `review-practice` PR** with the criteria in place (request Copilot again, or run a Source Control review over the branch's changes). Compare against your Stage 2 score — it should now catch the security and correctness issues it glossed over, because they're spelled out.
 
-**✅ Checkpoint:** Copilot review flags the planted issues, not just generic ones.
+**✅ Checkpoint:** With your criteria, Copilot flags the *planted* issues — measurably more than the generic pass in Stage 2.
 
 ## 🧧 Stage 4 (Optional stretch): A Reviewer agent (+8 min)
 
@@ -92,7 +120,7 @@ Each skill is a folder under `.github/skills/` with a `SKILL.md` whose frontmatt
 
 ## ✅ Completion Checklist
 - [ ] Used inline + Source Control review
-- [ ] Ran a Copilot PR review and triaged by severity
+- [ ] Reviewed the planted `review-practice` PR and scored Copilot's catch rate
 - [ ] Added `code-review.instructions.md`
 - [ ] *(Optional stretch)* Built a Reviewer agent + skills (review + domain) + PR template
 - [ ] Opened a PR and got a Copilot review
