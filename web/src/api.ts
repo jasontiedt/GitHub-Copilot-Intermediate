@@ -1,20 +1,22 @@
+import type { Task } from './types';
+
 const BASE = 'http://localhost:8000';
 
-export async function getTasks(): Promise<any> {
+export async function getTasks(): Promise<Task[]> {
   const res = await fetch(`${BASE}/tasks`);
-  return res.json();
+  return (await res.json()) as Task[];
 }
 
-export async function createTask(title: string, assignee: string): Promise<any> {
+export async function createTask(title: string, assignee: string): Promise<Task> {
   const res = await fetch(`${BASE}/tasks`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ title, assignee }),
   });
-  return res.json();
+  return (await res.json()) as Task;
 }
 
-export async function updateStatus(id: number, status: string) {
+export async function updateStatus(id: number, status: Task['status']): Promise<void> {
   await fetch(`${BASE}/tasks/${id}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
