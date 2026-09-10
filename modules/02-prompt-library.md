@@ -2,6 +2,8 @@
 
 **Goal:** Build a **prompt library** that turns your team's common tasks into one-command slash prompts — so anyone joining the project can be productive on day one. Instructions shape *every* response; **prompt files** handle *specific, repeatable tasks* you run on demand.
 
+> **Current compatibility:** `.prompt.md` files run with VS Code's **Local** harness. They are deprecated for **Agent Host** sessions, which do not load them. This module teaches prompt files because they remain useful locally; convert the finished prompts to **Agent Skills** before adopting Agent Host.
+
 **Estimated Time:** ~25 min core (Stages 1–3 + ship). **Optional stretch:** Stages 4–5 (+~15 min).
 **Branch:**
 ```bash
@@ -18,9 +20,9 @@ git checkout -b USERNAME/module-2-prompts
 
 ## 🎯 Stage 1: Inventory the repeatable work (5 min)
 
-In **Ask** mode:
+Select **Ask** from the agent picker:
 ```markdown
-#codebase What tasks does a developer repeat often in this repo (adding an API endpoint, adding a web component, writing tests, preparing a PR)? For each, list the steps and the files touched.
+Search this workspace. What tasks does a developer repeat often in this repo (adding an API endpoint, adding a web component, writing tests, preparing a PR)? For each, list the steps and the files touched.
 ```
 Pick 3–4 to turn into prompts. Good candidates: **scaffold an endpoint**, **scaffold a component**, **write tests**, **prep a PR**, **onboard a newcomer**.
 
@@ -34,12 +36,12 @@ Create `.github/prompts/scaffold-endpoint.prompt.md`:
 agent: 'agent'
 description: 'Scaffold a FastAPI endpoint with service function and a test'
 argument-hint: '<HTTP method> <path> — e.g. GET /tasks/{id}'
-tools: ['codebase', 'editFiles']
+tools: ['search', 'edit']
 ---
 
 # Scaffold an API endpoint
 
-Add the endpoint I describe to the TaskFlow API, following `api/api.instructions.md`:
+Add the endpoint I describe to the TaskFlow API, following `.github/instructions/api.instructions.md`:
 1. A pure function in `taskflow/service.py` (type-hinted, unit-testable).
 2. A route in `taskflow/app.py` using a Pydantic model for any body; validate input and raise `HTTPException` on bad data.
 3. A pytest in `tests/` covering the happy path and one edge case.
@@ -58,12 +60,12 @@ Create `.github/prompts/scaffold-component.prompt.md`:
 agent: 'agent'
 description: 'Scaffold a typed React component with loading/error states'
 argument-hint: '<ComponentName> and what it renders'
-tools: ['codebase', 'editFiles']
+tools: ['search', 'edit']
 ---
 
 # Scaffold a web component
 
-Create a React + TypeScript component under `web/src/components/`, following `web/web.instructions.md`:
+Create a React + TypeScript component under `web/src/components/`, following `.github/instructions/web.instructions.md`:
 - Typed props (no `any`); data typed via `src/types.ts`.
 - Explicit loading and error states for any async data.
 - A colocated test using React Testing Library + `userEvent`.
@@ -86,7 +88,7 @@ Try it: `/scaffold-component TaskFilter that filters the list by status`.
 
 <details><summary>💡 Stuck? Reveal a hint</summary>
 
-Create it via `/prompts` → **New Prompt** (or `/create-prompt`). Have the body tell Copilot to read `#codebase`, the READMEs, and the instruction files, then produce a 1-page overview. Test it by running `/onboard-me`.
+With the **Local** harness selected, create it via `/prompts`, or open **Configure Chat** (gear) → **Prompts** → **New Prompt (Workspace)**. To generate it with AI, type `/create-prompt`. Have the body tell Copilot to search the codebase, read the READMEs and instruction files, then produce a 1-page overview. Test it by running `/onboard-me`.
 
 </details>
 
@@ -122,9 +124,10 @@ Prompts aren't the only way to package a task — compare a couple:
 
 ## 🧠 Advanced sidebar
 
-- **Prompts vs. instructions vs. skills vs. agents:** *instructions* shape every response; *prompts* run a specific task on demand; *skills* are reference knowledge Copilot pulls in when relevant; *custom agents* bundle instructions + tools into a mode. Use the [customization decision matrix](https://code.visualstudio.com/docs/agents/concepts/customization) when unsure.
+- **Prompts vs. instructions vs. skills vs. agents:** *instructions* shape responses automatically; *prompts* run a specific Local-harness task on demand; *skills* package reusable workflows and resources that Copilot loads when relevant; *custom agents* bundle instructions and tools into a specialized agent. Use the [customization decision matrix](https://code.visualstudio.com/docs/agents/concepts/customization) when unsure.
 - **Input variables:** `${input:name}` / `${input:name:placeholder}` and `argument-hint` make prompts parameterized and discoverable.
 - **Sharing & sync:** workspace prompts live in `.github/prompts` (versioned with the repo); user prompts sync across your devices via Settings Sync. Browse community examples in [Awesome Copilot](https://github.com/github/awesome-copilot).
+- **Agent Host migration:** select the target Agent Host, open **Configure Chat** → **Overview** → **Migrate Prompt Files** → **Convert to Skills...**, choose the prompts, and select **Convert to Skills**. Review the result because some prompt frontmatter does not have an equivalent skill property.
 
 ## 🏁 What's Next?
 Continue to [Module 3: Code Review Mastery](03-code-review.md).

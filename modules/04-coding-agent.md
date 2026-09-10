@@ -76,7 +76,7 @@ Then draft an issue for the planted bug using it — e.g. *"`/focus` returns the
   ```json
   {
     "servers": {
-      "github": { "url": "https://api.githubcopilot.com/mcp/" }
+      "github": { "type": "http", "url": "https://api.githubcopilot.com/mcp" }
     }
   }
   ```
@@ -84,7 +84,7 @@ Then draft an issue for the planted bug using it — e.g. *"`/focus` returns the
 
 <details><summary>💡 Stuck? Reveal a hint</summary>
 
-Create the agent via `/agents` → **New Agent** with read + edit + test tools. Start the MCP server from `.vscode/mcp.json` (**Start** → **Allow**), then ask Agent mode: "Create an issue titled … with these acceptance criteria." Confirm the tools appear in the tools picker.
+Create the agent via `/agents`, or open **Configure Chat** (gear) → **Agents** → **New Agent (Workspace)**, then select only the read, edit, and test tools it needs. Use the **Start** code lens in `.vscode/mcp.json` and confirm that you trust the server when prompted. Select **Agent** from the agent picker, ask "Create an issue titled … with these acceptance criteria," and confirm the GitHub tools appear under **Configure Tools**.
 
 </details>
 
@@ -105,12 +105,12 @@ jobs:
   copilot-setup-steps:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
         with: { node-version: 20 }
       - run: npm install
         working-directory: web
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with: { python-version: '3.12' }
       - run: pip install -r requirements.txt
         working-directory: api

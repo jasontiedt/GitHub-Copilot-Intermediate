@@ -32,18 +32,19 @@ Watch what Copilot produces. Because the instructions are thin, it likely return
 
 ## 🎯 Stage 2: Set up your personal layer (3 min)
 
-Instructions come in three layers — **personal → repo → org** — that stack, with the more specific layer winning a direct conflict. Before you touch the team's file, set up *your own*. Here's the guidance you'd give a new teammate:
+Instructions come in three layers — **personal → repo → org** — that stack in that priority order when they conflict. Before you touch the team's file, set up *your own*. Here's the guidance you'd give a new teammate:
 
 > **Coaching a junior:** "Your **personal instructions** capture how *you* like Copilot to respond. They follow you across every repo and are never committed, so they're the safe place for style preferences — keep them about *you*, not the project."
 
 **Do it together:**
-1. **Configure Chat** ⚙ → **Instructions** → **New** → choose **User** (your VS Code profile), not Workspace.
+1. In the Chat view, select **Configure Chat** (gear) → **Instructions**, then choose **New Instructions (User)** from the **New** dropdown. You can also type `/instructions` to open the **Configure Instructions and Rules** menu.
 2. Add a couple of personal preferences, for example:
    ```markdown
    - Explain the tradeoffs of an approach before showing code.
    - Prefer small, reviewable diffs and call out anything risky.
    ```
-3. It syncs across your machines via **Settings Sync**; on github.com you can set matching **personal instructions** for Copilot on the web.
+3. For the Local harness, run **Settings Sync: Configure** from the Command Palette and enable **Prompts and Instructions** to sync this file. Agent Host sessions instead read personal instructions from `~/.copilot/instructions`; they do not read instructions stored only in VS Code profile data.
+4. GitHub.com has a separate personal-instructions setting: open [Copilot Chat](https://github.com/copilot), select your profile picture in the lower-left corner → **Personal instructions**, enter the preferences, and click **Save**.
 
 > **The boundary to teach:** anything the *team* must follow belongs in the repo file (next stage), not your personal layer — otherwise teammates never get it.
 
@@ -51,7 +52,7 @@ Instructions come in three layers — **personal → repo → org** — that sta
 
 ## 🎯 Stage 3: Write lean repo-wide instructions (6 min)
 
-**1.** Draft from the codebase: type `/init` in chat (or **Configure Chat** ⚙ → **Generate Instructions**). It analyzes the repo and proposes a `copilot-instructions.md`.
+**1.** Draft from the codebase: type `/init` in chat. You can also open **Configure Chat** (gear), use the Agent Customizations editor's **Overview** tab, and choose **Generate Instructions**. It analyzes the repo and proposes a `copilot-instructions.md`.
 
 **2.** **Prune hard.** A good instruction file is short and specific — it captures the *non-obvious, team-specific* rules, not everything a linter already enforces. Replace the file with something like:
 
@@ -84,7 +85,7 @@ Repo-wide rules apply everywhere; **path-scoped** rules apply only to matching f
 `.github/instructions/web.instructions.md`
 ```markdown
 ---
-applyTo: "web/**/*.{ts,tsx}"
+applyTo: "web/**/*.ts,web/**/*.tsx"
 ---
 # Web (React + TypeScript)
 - Function components with typed props; no `any` — type API data via `src/types.ts`.
@@ -117,7 +118,7 @@ applyTo: "api/**/*.py"
 
 <details><summary>💡 Stuck? Reveal a hint</summary>
 
-Create instruction files via `/instructions` → **New Instructions** (or **Configure Chat** ⚙ → **Instructions** tab). For `AGENTS.md`, VS Code auto-detects it at the repo root — keep it to a few paragraphs of "how this project actually works."
+Create instruction files via `/instructions`, or open **Configure Chat** (gear) → **Instructions** and choose **New Instructions (Workspace)**. For `AGENTS.md`, VS Code auto-detects it at the repo root — keep it to a few paragraphs of "how this project actually works."
 
 </details>
 
@@ -153,9 +154,9 @@ There's more than one path to good instructions — try a couple and keep what s
 
 ## 🧠 Advanced sidebar
 
-- **Precedence (three layers):** personal (user) → repository (`copilot-instructions.md` / `AGENTS.md`) → organization. All three are combined; the more specific layer wins a direct conflict, and org/enterprise compliance rules can be enforced on top.
-- **Organization-level instructions (admins & leads):** set them on github.com → your org → **Settings** → **Copilot** → **Custom instructions** (or via an enterprise policy). They reach *every* repo and member automatically — the right home for standards you never want to restate: security/compliance rules, approved libraries, and language/testing baselines. In VS Code, turn on `github.copilot.chat.organizationInstructions.enabled` so Copilot honors them. Keep this layer **small and universal** — repo-specific detail stays in `copilot-instructions.md`. A healthy rollout **promotes** a proven repo rule up to the org once it has earned its place (you'll plan this in the capstone).
-- **Task-specific settings instructions** still exist for **code review**, **commit messages**, and **PR descriptions** (`github.copilot.chat.reviewSelection.instructions`, etc.) — you'll use the review one in Module 3.
+- **Precedence (three layers):** personal (user, highest priority) → repository (`copilot-instructions.md` / `AGENTS.md`) → organization (lowest priority). All relevant instructions are provided to Copilot, so avoid conflicts even though priority resolves them.
+- **Organization-level instructions (org owners):** on GitHub.com, select your profile picture → **Your organizations** → your organization → **Settings** → **Copilot**. Add the text under **Preferences and instructions**, then click **Save changes**. GitHub currently supports these instructions in Copilot Chat, code review, and the cloud agent on GitHub.com. VS Code can discover them when `github.copilot.chat.organizationInstructions.enabled` is `true`. Keep this layer **small and universal** — repo-specific detail stays in `copilot-instructions.md`.
+- **Task-specific settings instructions** still exist for **code review** (`github.copilot.chat.reviewSelection.instructions`), **commit messages** (`github.copilot.chat.commitMessageGeneration.instructions`), and **PR descriptions** (`github.copilot.chat.pullRequestDescriptionGeneration.instructions`). Settings-based code- and test-generation instructions are deprecated; use instruction files for those tasks.
 - **Measuring impact:** watch the **References** section, use the chat customization **Diagnostics** view (right-click in Chat → *Diagnostics*), and track whether reviewers stop leaving the same comments.
 
 ## 🏁 What's Next?

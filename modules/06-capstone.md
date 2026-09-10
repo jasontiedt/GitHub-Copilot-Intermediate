@@ -47,7 +47,7 @@ Ask Copilot: *"Review my `.github/` customization files for overlap, contradicti
 
 <details><summary>💡 Stuck? Reveal a hint</summary>
 
-Ask Agent mode to "add a CI workflow that runs the api tests and the web typecheck/build in two jobs." For CODEOWNERS, map `web/` and `api/` to their owners. (Use `npm ci` with a committed `package-lock.json` in real CI; `npm install` is fine here.)
+Select **Agent** from the agent picker and ask it to "add a CI workflow that runs the api tests and the web typecheck/build in two jobs." For CODEOWNERS, map `web/` and `api/` to their owners. (Use `npm ci` with a committed `package-lock.json` in real CI; `npm install` is fine here.)
 
 </details>
 
@@ -70,10 +70,11 @@ Ask Copilot to "draft a ROLLOUT.md from the `.github/` artifacts in this repo," 
 
 ## 🎯 Stage 4: Create a Copilot Space (5 min)
 
-On [github.com/copilot](https://github.com/copilot), create a **Copilot Space** for the team:
-1. Add this repository and the key docs (`ROLLOUT.md`, instruction files) as context.
-2. Set the Space's goal (e.g., "Onboard and support TaskFlow contributors").
-3. Share it with the team — now anyone can chat with the project's shared context.
+Go to [github.com/copilot/spaces](https://github.com/copilot/spaces) and click **Create space**:
+1. Enter a name, choose the organization as the owner, and click **Create Space**.
+2. Add instructions that state the Space's goal (for example, "Onboard and support TaskFlow contributors").
+3. Select **Add sources** and add this repository plus the key docs (`ROLLOUT.md` and the instruction files).
+4. Share the organization-owned Space with the team using viewer, editor, or admin access.
 
 **✅ Checkpoint:** A Space that packages the project's context for everyone.
 

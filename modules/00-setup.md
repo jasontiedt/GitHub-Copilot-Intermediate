@@ -12,8 +12,8 @@ Get to know TaskFlow — the code you'll practice Copilot on — and spot the ro
 
 ## 🧰 Prerequisites
 
-- **VS Code** 1.99+ with **GitHub Copilot** + **Copilot Chat**
-- **Git** and a **GitHub** account with Copilot (Business/Enterprise unlocks the org-level features in the advanced sidebars)
+- The latest stable **VS Code** with **GitHub Copilot** enabled
+- **Git** and a **GitHub** account with Copilot (some organization features require an organization owner or administrator)
 - To *run* the app (optional): **Node.js** 18+ and **Python** 3.10+
 
 ## 🗺️ Step 1: Meet the codebase (5 min)
@@ -25,7 +25,7 @@ You'll practice Copilot *on* this code, so get a feel for the layout first:
 
 Open a couple of files, then practice with Copilot Chat:
 ```markdown
-#codebase Give me a 5-line tour of this repo: what each folder does and where the main logic lives.
+Give me a 5-line tour of this workspace: what each folder does and where the main logic lives. Search the codebase before answering.
 ```
 
 <details><summary>Optional: run the app to see it live</summary>
@@ -46,8 +46,9 @@ cd web && npm install && npm run dev                                       # htt
 ## 🔎 Step 2: Spot the rough edges with Copilot (3 min)
 
 This app is **deliberately imperfect** — that's the point. Practice using Copilot to find things to improve. Skim the "Known rough edges" in [api/README.md](../api/README.md) and [web/README.md](../web/README.md), then try:
+In the Chat view, select **Add Context** → **Files & Folders**, attach `api/taskflow/service.py`, and ask:
 ```markdown
-#file:api/taskflow/service.py Point out any bugs or risky spots in this file.
+Point out any bugs or risky spots in this file.
 ```
 See if Copilot flags the sort direction in `top_priority`, the missing validation, and the `any` types over in `web/src/api.ts`.
 
@@ -68,7 +69,7 @@ git checkout -b USERNAME/module-1-instructions
 
 ## 🔀 Try it another way
 Same orientation, different Copilot surfaces — try both and notice what each is good at:
-- **Inline vs. chat:** instead of `#codebase` in the Chat view, put your cursor in `api/taskflow/service.py` and press **Ctrl+I** (inline chat): *"Explain what this file does."* Inline is quick for one file; `#codebase` is better for the whole repo.
+- **Inline vs. chat:** put your cursor in `api/taskflow/service.py` and press **Ctrl+I** (inline chat): *"Explain what this file does."* Inline chat is quick for one file; the Chat view is better when the agent needs to search the whole workspace.
 - **Second opinion:** switch the chat **model picker** to a different model and re-ask the tour question. Seeing how the answers differ is handy later when you want a second read on a bigger change.
 
 ## 🏁 What's Next?

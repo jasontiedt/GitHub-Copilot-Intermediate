@@ -45,9 +45,9 @@ items:
       Sort descending by priority; tie-break by id. Add a failing test first.
 ```
 
-Practice generating it from the code. In **Ask** mode:
+Practice generating it from the code. Select **Ask** from the agent picker:
 ```markdown
-#codebase From TaskFlow's known rough edges, propose 6 well-scoped sprint items with
+Search the workspace. From TaskFlow's known rough edges, propose 6 well-scoped sprint items with
 acceptance criteria I could hand to a coding agent, plus 2 that a human should own.
 Format them as entries for .github/sprint/backlog.yml.
 ```
@@ -89,7 +89,7 @@ Reviewing a stack of draft PRs should be quick. Build a triage prompt — `.gith
 ---
 agent: 'agent'
 description: 'Triage the open draft PRs from the sprint kickoff'
-tools: ['codebase', 'changes']
+tools: ['github/*', 'search']
 ---
 
 # Triage the batch
@@ -98,7 +98,7 @@ For each open draft PR from the sprint kickoff, give a one-line verdict —
 tests, following `.github/instructions/code-review.instructions.md`.
 Do not edit code; output a table.
 ```
-(Or reuse your **Reviewer agent** from Module 3 on each PR.) Then route each one: approve, request changes, or close. **Nothing merges without a human.**
+This uses the GitHub MCP server configured in Module 4 to inspect remote PRs. (Or reuse your **Reviewer agent** from Module 3 on each PR.) Then route each one: approve, request changes, or close. **Nothing merges without a human.**
 
 **✅ Checkpoint:** a ranked review queue you could hand to the team.
 
@@ -117,7 +117,7 @@ Do not edit code; output a table.
 
 <details><summary>💡 Note</summary>
 
-Native automations need a **private/internal** repo on **Copilot Business/Enterprise** — the Actions workflow here is the portable option that also works on public repos.
+Native automations need a **private/internal** repo with Copilot cloud agent enabled. They are available with Copilot Pro, Pro+, Max, Business, and Enterprise; organization policy must also allow cloud agent and automations. The Actions workflow here is the portable option that also works on public repos.
 
 </details>
 
@@ -142,13 +142,13 @@ Native automations need a **private/internal** repo on **Copilot Business/Enterp
 ## 🔀 Try it another way
 Batch delegation has a few front doors — try a couple and pick your default:
 - **Import path:** run the workflow vs. create the same issues from chat through the **GitHub MCP** (Module 4) vs. `gh issue create` in a loop.
-- **Kickoff:** assign Copilot from the workflow vs. from the issue's **Assignees → Copilot** in the UI vs. `gh agent-task create` for a one-off.
+- **Kickoff:** assign Copilot from the workflow vs. from the issue's **Assignees → Copilot** in the UI vs. the public-preview Agent Tasks REST API for a one-off.
 
 ## 🧠 Advanced sidebar
 - **Keep it safe:** required reviews + branch protection so nothing auto-merges; give the agent only the tools it needs and set the firewall allowlist; never put secrets in issue or prompt text — use repo secrets.
 - **Tokens:** the assignment API takes a **user PAT**, not `GITHUB_TOKEN`; scope it down and store it as a secret.
 - **Concurrency & cost:** sessions may queue, and each delegated item uses premium requests — start with `limit: 2` and grow.
-- **Native automations:** the **Agents → Automations** feature runs Copilot on a schedule or on events (issue opened, PR opened) without a workflow file — on private/internal repos with Business/Enterprise.
+- **Native automations:** open the repository's **Agents** tab → **Automations** → **Create new**. Choose a schedule or repository event, enter the prompt, select only the required tools, and click **Create automation**. This requires a private/internal repository with cloud agent and automations enabled.
 - **Right work only:** delegate scoped, testable items; keep architecture, security, and ambiguous work human-first.
 
 ## 🏁 What's Next?
