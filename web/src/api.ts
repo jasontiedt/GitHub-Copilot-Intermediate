@@ -1,7 +1,12 @@
+import type { Task } from './types';
+
 const BASE = 'http://localhost:8000';
 
-export async function getTasks(): Promise<any> {
+export async function getTasks(): Promise<Task[]> {
   const res = await fetch(`${BASE}/tasks`);
+  if (!res.ok) {
+    throw new Error('Unable to load tasks');
+  }
   return res.json();
 }
 
