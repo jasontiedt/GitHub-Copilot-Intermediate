@@ -26,7 +26,7 @@ copilot-advanced-workshop/
 │   └── tests/
 ├── web/                             # React + TypeScript frontend (Vite)
 │   └── src/ (App, api client, components)
-└── modules/                         # the workshop (0–5)
+└── modules/                         # the workshop (0–6)
 ```
 
 ## 🚀 Run it (optional)
@@ -60,7 +60,8 @@ Work through the modules in order. Each is intermediate→advanced and **timebox
 | 2 | [Designing a Reusable Prompt Library](modules/02-prompt-library.md) | An onboarding prompt library anyone can run day one | ~25 min |
 | 3 | [Code Review Mastery](modules/03-code-review.md) | Review standards + a Reviewer agent + PR template | ~25 min |
 | 4 | [Coding Agent at Scale](modules/04-coding-agent.md) | Agent-ready issues, custom agents, MCP, agent env | ~25 min |
-| 5 | [Capstone: Roll It Out to Your Team](modules/05-capstone.md) | A rollout plan that ties it all together | ~30 min |
+| 5 | [AI-Assisted Sprint Delegation](modules/05-sprint-delegation.md) | A Sunday-night batch that hands a sprint's issues to Copilot | ~30 min |
+| 6 | [Capstone: Roll It Out to Your Team](modules/06-capstone.md) | A rollout plan that ties it all together | ~30 min |
 
 See the [module index](modules/README.md) for details. Times are the **core** path; each module's optional 🧧 stretch stages add ~10–18 min if you want the deeper hands-on.
 

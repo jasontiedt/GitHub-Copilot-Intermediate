@@ -1,4 +1,4 @@
-# Module 5: Capstone — Roll It Out to Your Team
+# Module 6: Capstone — Roll It Out to Your Team
 
 **Goal:** Bring everything together into a **team rollout plan** — the artifacts and the written plan that make Copilot a consistent, measurable part of how your team works. By the end you'll have a reusable `.github/` pack plus a plan you could hand to any team.
 
@@ -6,7 +6,7 @@
 **Branch:**
 ```bash
 git checkout main && git pull
-git checkout -b USERNAME/module-5-capstone
+git checkout -b USERNAME/module-6-capstone
 ```
 
 ## What You'll Build
@@ -17,7 +17,7 @@ git checkout -b USERNAME/module-5-capstone
 
 ## 🎯 Stage 1: Audit & assemble the pack (8 min)
 
-Bring the artifacts from Modules 1–4 onto one branch and review them together:
+Bring the artifacts from Modules 1–5 onto one branch and review them together:
 ```text
 .github/
 ├── copilot-instructions.md        # M1
@@ -28,7 +28,9 @@ Bring the artifacts from Modules 1–4 onto one branch and review them together:
 ├── agents/*.agent.md              # M3, M4
 ├── ISSUE_TEMPLATE/agent_task.md   # M4
 ├── pull_request_template.md       # M3
-└── workflows/copilot-setup-steps.yml  # M4
+├── workflows/copilot-setup-steps.yml  # M4
+├── workflows/sprint-kickoff.yml   # M5
+└── sprint/backlog.yml             # M5
 ```
 Ask Copilot: *"Review my `.github/` customization files for overlap, contradictions, and gaps. Suggest what to merge or trim."*
 
@@ -55,7 +57,7 @@ Ask Agent mode to "add a CI workflow that runs the api tests and the web typeche
 
 **Done when it covers:**
 - [ ] **What we standardized** and why (link the `.github/` artifacts).
-- [ ] **How to use it** — the prompt library, the Reviewer agent, delegating to the coding agent.
+- [ ] **How to use it** — the prompt library, the Reviewer agent, delegating single issues, and the Sunday-night sprint kickoff.
 - [ ] **Rollout** — phases (pilot → team → org), who owns the instructions/prompts.
 - [ ] **Metrics** — what "working" looks like (fewer repeat review comments, faster PRs, adoption).
 - [ ] **Safe use** — give the agent only the tools it needs, review before merge, keep instructions current.
@@ -84,7 +86,7 @@ Decide how you'll keep this alive:
 
 ## 🚀 Ship it (4 min)
 1. **Commit** the supporting files + `ROLLOUT.md`.
-2. **Push:** `git push -u origin USERNAME/module-5-capstone`
+2. **Push:** `git push -u origin USERNAME/module-6-capstone`
 3. **Open a PR** and request a **Copilot review** — this PR lands your whole rollout pack.
 
 ## ✅ Completion Checklist

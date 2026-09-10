@@ -144,7 +144,7 @@ Delegation has a few front doors — try a couple and pick your default:
 - **Where agents run:** the same custom agents work locally, on the coding agent, and on cloud harnesses — write them once.
 
 ## 🏁 What's Next?
-Continue to [Module 5: Capstone — Team Enablement Playbook](05-capstone.md).
+Continue to [Module 5: AI-Assisted Sprint Delegation](05-sprint-delegation.md).
 
 ### 🌟 Take-home challenge
 Take a genuinely messy ticket from your backlog, rewrite it with your `agent_task` template, delegate it to the coding agent, and measure how many review round-trips it takes to merge. Refine the template from what you learn.

@@ -1,0 +1,111 @@
+name: Sprint Kickoff
+
+# Module 5 — AI-Assisted Sprint Delegation.
+#
+# A manual run simulates the "Sunday night" kickoff: it reads .github/sprint/backlog.yml,
+# creates one labeled issue per item, and (optionally) assigns the `delegate: true` items
+# to the Copilot coding agent so draft PRs are waiting on Monday morning.
+#
+# To make it run automatically every Sunday night, uncomment the `schedule` block below.
+# It's left commented so nothing fires unexpectedly during the workshop — trigger it from
+# the Actions tab (Run workflow) to see it in action.
+
+on:
+  workflow_dispatch:
+    inputs:
+      assign_to_copilot:
+        description: "Assign delegate:true items to the Copilot coding agent"
+        type: boolean
+        default: true
+      limit:
+        description: "Max issues to create (0 = all). Keep it small while practicing."
+        type: number
+        default: 2
+  # schedule:
+  #   - cron: "0 6 * * 1"   # 06:00 UTC every Monday (~Sunday evening in the Americas)
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: sprint-kickoff
+  cancel-in-progress: false
+
+jobs:
+  kickoff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Import backlog and delegate to Copilot
+        env:
+          # The coding-agent assignment API needs a USER token (a PAT) — the default
+          # GITHUB_TOKEN is a server-to-server token, which the API rejects. Add a
+          # fine-grained PAT as the COPILOT_ASSIGN_TOKEN secret with: Metadata (read) and
+          # read/write on Actions, Contents, Issues, and Pull requests. Without it the
+          # workflow still imports the labeled issues — it just won't assign Copilot.
+          GH_TOKEN: ${{ secrets.COPILOT_ASSIGN_TOKEN || github.token }}
+          CAN_ASSIGN: ${{ secrets.COPILOT_ASSIGN_TOKEN != '' }}
+          ASSIGN_INPUT: ${{ inputs.assign_to_copilot }}
+          LIMIT: ${{ inputs.limit }}
+          REPO: ${{ github.repository }}
+          BASE: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          BACKLOG=".github/sprint/backlog.yml"
+
+          # Schedule runs carry no inputs — default to "assign" and "all".
+          [ -z "${ASSIGN_INPUT:-}" ] && ASSIGN_INPUT=true
+          [ -z "${LIMIT:-}" ] && LIMIT=0
+
+          # Ensure the labels exist (idempotent).
+          gh label create sprint      --color 0e8a16 --description "Imported by Sprint Kickoff" --force
+          gh label create agent-ready --color 1d76db --description "Scoped for the coding agent" --force
+          gh label create human-first --color b60205 --description "Needs a human; do not delegate" --force
+
+          create_issue () {
+            gh api --method POST \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "/repos/${REPO}/issues" --input - >/dev/null
+          }
+
+          items="$(yq -o=json '.items' "$BACKLOG")"
+          if [ "${LIMIT}" -gt 0 ] 2>/dev/null; then
+            items="$(echo "$items" | jq -c ".[:${LIMIT}]")"
+          fi
+
+          echo "$items" | jq -c '.[]' | while IFS= read -r item; do
+            title="$(echo "$item" | jq -r '.title')"
+            body="$(echo "$item"  | jq -r '.body // ""')"
+            delegate="$(echo "$item" | jq -r '.delegate // false')"
+            if [ "$delegate" = "true" ]; then label="agent-ready"; else label="human-first"; fi
+
+            base="$(jq -n --arg t "$title" --arg b "$body" --arg l "$label" \
+              '{title:$t, body:$b, labels:["sprint",$l]}')"
+
+            if [ "$delegate" = "true" ] && [ "$ASSIGN_INPUT" = "true" ] && [ "$CAN_ASSIGN" = "true" ]; then
+              payload="$(echo "$base" | jq --arg r "$REPO" --arg base "$BASE" \
+                '. + {assignees:["copilot-swe-agent[bot]"], agent_assignment:{target_repo:$r, base_branch:$base}}')"
+              if echo "$payload" | create_issue; then
+                echo "✅ delegated to Copilot: $title"
+              else
+                echo "::warning::Could not assign Copilot for \"$title\" — creating it unassigned. Is the coding agent enabled and the PAT valid?"
+                echo "$base" | create_issue && echo "📝 created (unassigned): $title"
+              fi
+            else
+              echo "$base" | create_issue && echo "📝 created [$label]: $title"
+            fi
+          done
+
+          {
+            echo "### Sprint Kickoff complete"
+            echo ""
+            if [ "$CAN_ASSIGN" = "true" ]; then
+              echo "- Copilot assignment: **on** — delegate items should now have draft PRs in progress."
+            else
+              echo "- Copilot assignment: **off** — set the \`COPILOT_ASSIGN_TOKEN\` secret (a user PAT) to enable it."
+            fi
+            echo "- Review the new issues on the **Issues** tab and any draft PRs on the **Pull requests** tab."
+          } >> "$GITHUB_STEP_SUMMARY"

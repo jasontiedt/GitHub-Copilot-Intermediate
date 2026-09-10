@@ -1,0 +1,76 @@
+# Sprint backlog for the Sunday-night kickoff (Module 5 — AI-Assisted Sprint Delegation).
+#
+# Edit this list to match your sprint, then run the "Sprint Kickoff" workflow
+# (Actions tab → Sprint Kickoff → Run workflow). It creates one labeled issue per item.
+# Items with `delegate: true` are handed to the Copilot coding agent to draft a PR;
+# the rest stay `human-first` for a person to pick up.
+#
+# The `delegate` flag is the whole skill: only well-scoped, testable, low-ambiguity work
+# should be delegated. Architecture, security, and anything vague stays human-first.
+
+sprint: "Sprint 24 — TaskFlow hardening"
+
+items:
+  - title: "Fix top_priority to return the highest-priority tasks"
+    delegate: true
+    body: |
+      `/focus` surfaces the *lowest*-priority tasks. `top_priority` in
+      api/taskflow/service.py sorts ascending.
+
+      Acceptance criteria
+      - Sort descending by priority; break ties by id ascending.
+      - Add a pytest that fails before the fix and passes after.
+
+  - title: "Validate status and priority at the API boundary"
+    delegate: true
+    body: |
+      create_task / update_status accept any value.
+
+      Acceptance criteria
+      - Reject invalid status or priority with HTTP 422 (Pydantic validation).
+      - Add tests for the valid and invalid paths.
+
+  - title: "Add GET /tasks/{id} with a typed web client function"
+    delegate: true
+    body: |
+      Acceptance criteria
+      - GET /tasks/{id} returns the task, or 404 when missing.
+      - A typed function in web/src/api.ts (no `any`, use src/types.ts).
+      - A test for the endpoint and for the client function.
+
+  - title: "Replace the `any` types in web/src/api.ts"
+    delegate: true
+    body: |
+      Acceptance criteria
+      - Model API responses with types from web/src/types.ts.
+      - No `any` remains; `npm run typecheck` passes.
+
+  - title: "Add loading, error, and empty states to the task list"
+    delegate: true
+    body: |
+      App.tsx has no loading/error state; TaskList.tsx has no empty state.
+
+      Acceptance criteria
+      - Show loading, error, and empty states.
+      - Add a component test covering the empty state.
+
+  - title: "Extract the hard-coded API base URL into one config"
+    delegate: true
+    body: |
+      web/src/api.ts hard-codes http://localhost:8000.
+
+      Acceptance criteria
+      - Read the base URL from a single config/env module.
+      - No per-call URL literals remain.
+
+  # --- human-first: intentionally NOT delegated ---
+  - title: "Replace the in-memory store with a real database"
+    delegate: false
+    body: |
+      HUMAN-FIRST — architecture + data-migration decision. Needs design and review
+      before any code. Do not delegate to an unattended agent.
+
+  - title: "Add authentication and authorization"
+    delegate: false
+    body: |
+      HUMAN-FIRST — security-sensitive and cross-cutting. Requires a human owner.
