@@ -78,7 +78,7 @@ See the [module index](modules/README.md) for details. Times are the **core** pa
 
 ## 🧰 Prerequisites
 
-- **VS Code** 1.99+ with **GitHub Copilot** + **GitHub Copilot Chat** (Business/Enterprise recommended for org-level features)
+- The latest stable **VS Code** with **GitHub Copilot** enabled (some GitHub organization features require an organization owner or administrator)
 - **Node.js** 18+ and **Python** 3.10+
 - **Git** and a **GitHub** account with Copilot access
 - Familiarity with Copilot **chat, inline suggestions, and agent mode**

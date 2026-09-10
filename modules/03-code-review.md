@@ -19,7 +19,7 @@ git checkout -b USERNAME/module-3-review
 
 ## 🎯 Stage 1: Review in the editor (6 min)
 
-**1. Inline review.** Open [api/taskflow/service.py](../api/taskflow/service.py), select `top_priority`, right-click → **Copilot → Review and Comment** (the menu may read **Generate Code → Review**). Read the inline comments in the **Comments** panel.
+**1. Inline review.** Open [api/taskflow/service.py](../api/taskflow/service.py), select `top_priority`, right-click → **Generate Code** → **Review**. Read the comments inline and in the **Comments** panel.
 
 **2. Source Control review.** Make a small edit somewhere, then open **Source Control**, hover **CHANGES**, and click **Code Review - Changes**. Comments appear inline and in the **Problems** tab.
 
@@ -94,7 +94,7 @@ Now **re-review the `review-practice` PR** with the criteria in place (request C
 
 <details><summary>💡 Stuck? Reveal a hint</summary>
 
-Create it via `/agents` → **New Agent**. Give it `tools: ['search/codebase', 'search/usages', 'changes']` and a body that says "Do not edit. Report Blocking/Suggestion/Nit against our review instructions." Select it from the mode picker and run "Review my staged changes."
+Create it via `/agents`, or open **Configure Chat** (gear) → **Agents** → **New Agent (Workspace)**. Give it `tools: ['search']` and a body that says "Do not edit. Report Blocking/Suggestion/Nit against our review instructions." Select it from the **agent picker** and run "Review my staged changes."
 
 </details>
 
@@ -127,7 +127,7 @@ Each skill is a folder under `.github/skills/` with a `SKILL.md` whose frontmatt
 
 ## 🔀 Try it another way
 Copilot review shows up in several places — run the same change through a couple and see what each catches:
-- **Three surfaces, one bug:** review `top_priority` as an inline selection, then via **Source Control → Code Review**, then on a **PR**. The PR review sees the whole change; inline stays tightly focused.
+- **Three surfaces, one bug:** review `top_priority` as an inline selection, then via the code-review button beside **CHANGES** in Source Control, then on a **PR**. The PR review sees the whole change; inline stays tightly focused.
 - **Agent vs. instructions:** review a diff with just your `code-review.instructions.md` in place, then again using your **Reviewer agent**. Compare how the findings are organized.
 
 ## 🧠 Advanced sidebar

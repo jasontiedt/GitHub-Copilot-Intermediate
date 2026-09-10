@@ -20,6 +20,6 @@ Seven modules that take Copilot from individual use to a **team standard** for t
 - **Practice a Copilot review:** end each module by pushing your branch, opening a PR, and requesting a **Copilot review** (under **Reviewers**, next to **Copilot**, click **Request**) — the goal is the review practice, not a perfect PR.
 - **Keep your artifacts:** everything under `.github/` is portable to your real repos.
 
-> These modules use current Copilot conventions: `.instructions.md` with `applyTo`, `.prompt.md` with `agent:` frontmatter, custom agents as `.agent.md`, and the **Configure Chat** (⚙) → Agent Customizations editor.
+> These modules use current Copilot conventions: `.instructions.md` with `applyTo`, custom agents as `.agent.md`, Agent Skills as `SKILL.md`, and the **Configure Chat** (gear) → Agent Customizations editor. Module 2 explicitly covers the Local harness limitation and Agent Host migration for `.prompt.md` files.
 
 Start with [Module 0: Setup & Orientation](00-setup.md).
