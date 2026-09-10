@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from . import service
+from .search import bulk_complete, is_admin, search_tasks, SEARCH_LOG
 from .store import TaskStore
 
 app = FastAPI(title="TaskFlow API")
@@ -27,6 +28,10 @@ class NewTask(BaseModel):
 
 class StatusUpdate(BaseModel):
     status: str
+
+
+class BulkComplete(BaseModel):
+    ids: list
 
 
 def _dump(t):
@@ -67,3 +72,22 @@ def get_stats():
 @app.get("/focus")
 def get_focus(n: int = 3):
     return [_dump(t) for t in service.top_priority(store, n)]
+
+
+@app.get("/tasks/search")
+def get_search(q: str):
+    results = search_tasks(store, q)
+    return {"query": q, "count": len(results), "results": [_dump(t) for t in results]}
+
+
+@app.post("/tasks/bulk-complete")
+def post_bulk_complete(body: BulkComplete):
+    count = bulk_complete(store, body.ids)
+    return {"completed": count}
+
+
+@app.get("/admin/logs")
+def get_admin_logs(token: str = ""):
+    if not is_admin(token):
+        return {"error": "forbidden"}
+    return {"log": SEARCH_LOG}
