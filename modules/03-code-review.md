@@ -2,7 +2,7 @@
 
 **Goal:** Make code review faster and more consistent with Copilot — from inline review while you code, to a **Copilot review on the PR**, to **writing down your team's review standards** so every review (human or AI) checks the same things. TaskFlow's planted bugs and gaps give you plenty to catch.
 
-**Estimated Time:** ~25 min core (Stages 1–3 + ship). **Optional stretch:** Stages 4–5 (+~14 min).
+**Estimated Time:** ~25 min core (Stages 1–3 + ship). **Optional stretch:** Stages 4–5 (+~15 min).
 **Branch:**
 ```bash
 git checkout main && git pull
@@ -12,7 +12,7 @@ git checkout -b USERNAME/module-3-review
 ## What You'll Learn
 - [ ] Use inline review, Source Control review, and **Copilot PR review**
 - [ ] Encode custom **review criteria** so Copilot catches *your* issues
-- [ ] Build a **Reviewer agent** and a **review skill** tuned to this repo
+- [ ] Build a **Reviewer agent** plus **skills** (a review skill + a domain skill) tuned to this repo
 - [ ] Standardize with a PR template
 - [ ] **Ship it**: PR + Copilot review
 
@@ -70,22 +70,23 @@ Create it via `/agents` → **New Agent**. Give it `tools: ['search/codebase', '
 
 </details>
 
-## 🧧 Stage 5 (Optional stretch): A review skill + PR template (+6 min)
+## 🧧 Stage 5 (Optional stretch): Skills + PR template (+7 min)
 
-**Your goal:** Make your standards discoverable to Copilot's PR reviewer *and* to humans.
+**Your goal:** Make your standards discoverable to Copilot's PR reviewer *and* to humans — and see that **skills package any reusable knowledge, not just review rules**.
 
 **Done when:**
 - [ ] `.github/skills/code-review/SKILL.md` captures the team's review checklist (the folder name `code-review` helps Copilot code review pick it up).
+- [ ] A second, **non-review** skill — `.github/skills/taskflow-domain/SKILL.md` — captures the facts Copilot keeps getting wrong: the valid statuses (`todo`/`in_progress`/`done`), that **higher `priority` means more important** (the sort bug from Module 4!), the in-memory store, and "no auth yet." Copilot pulls it in whenever a task touches those areas.
 - [ ] `.github/pull_request_template.md` prompts for *what/why*, *how to test*, and a checklist that mirrors your review criteria.
 
 <details><summary>💡 Stuck? Reveal a hint</summary>
 
-The skill's frontmatter needs `name` and `description`. Keep the checklist identical to your review instructions so humans and Copilot converge on the same bar.
+Each skill is a folder under `.github/skills/` with a `SKILL.md` whose frontmatter has `name` and `description` — Copilot reads the description to decide when to pull the skill in, so make it specific. Keep the review checklist identical to your review instructions; for the domain skill, just state the facts plainly ("Priority is higher-is-more-important; the store is in-memory").
 
 </details>
 
 ## 🚀 Ship it (4 min)
-1. **Commit** your review instructions, Reviewer agent, skill, and PR template.
+1. **Commit** your review instructions, Reviewer agent, skills, and PR template.
 2. **Push:** `git push -u origin USERNAME/module-3-review`
 3. **Open a PR** and request a **Copilot review** — notice it now applies your criteria.
 
@@ -93,7 +94,7 @@ The skill's frontmatter needs `name` and `description`. Keep the checklist ident
 - [ ] Used inline + Source Control review
 - [ ] Ran a Copilot PR review and triaged by severity
 - [ ] Added `code-review.instructions.md`
-- [ ] *(Optional stretch)* Built a Reviewer agent + review skill + PR template
+- [ ] *(Optional stretch)* Built a Reviewer agent + skills (review + domain) + PR template
 - [ ] Opened a PR and got a Copilot review
 
 ## 🔀 Try it another way

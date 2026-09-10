@@ -2,7 +2,7 @@
 
 **Goal:** Turn TaskFlow's thin, generic `copilot-instructions.md` into layered instructions that make Copilot follow *your team's* conventions automatically. Good instructions are one of the most useful things a team can set up: write them once, and every response gets better.
 
-**Estimated Time:** ~30 min core (Stages 1–3, 5 + ship). **Optional stretch:** Stage 4 (+~8 min).
+**Estimated Time:** ~30 min core (Stages 1–4, 6 + ship). **Optional stretch:** Stage 5 (+~8 min).
 **Branch:**
 ```bash
 git checkout main && git pull
@@ -11,13 +11,14 @@ git checkout -b USERNAME/module-1-instructions
 
 ## What You'll Learn
 - [ ] Audit an ineffective instruction file and see its impact (or lack of it)
+- [ ] Set up your **personal (user) instructions** and learn the **personal → repo → org** layering
 - [ ] Write a **short, focused** repo-wide `copilot-instructions.md`
 - [ ] Add **path-scoped** `.instructions.md` for `web/`, `api/`, and tests
 - [ ] Use **`AGENTS.md`** for cross-tool, "what's intentional" context
 - [ ] Verify instructions actually change Copilot's output
 - [ ] **Ship it**: PR + Copilot review
 
-## 🎯 Stage 1: Audit what you have (6 min)
+## 🎯 Stage 1: Audit what you have (5 min)
 
 **1.** Open [.github/copilot-instructions.md](../.github/copilot-instructions.md). Notice it's generic — it says *what* the app is but nothing about *how this team works*.
 
@@ -29,7 +30,26 @@ Watch what Copilot produces. Because the instructions are thin, it likely return
 
 **✅ Checkpoint:** You've seen that weak instructions → weak defaults.
 
-## 🎯 Stage 2: Write lean repo-wide instructions (7 min)
+## 🎯 Stage 2: Set up your personal layer (3 min)
+
+Instructions come in three layers — **personal → repo → org** — that stack, with the more specific layer winning a direct conflict. Before you touch the team's file, set up *your own*. Here's the guidance you'd give a new teammate:
+
+> **Coaching a junior:** "Your **personal instructions** capture how *you* like Copilot to respond. They follow you across every repo and are never committed, so they're the safe place for style preferences — keep them about *you*, not the project."
+
+**Do it together:**
+1. **Configure Chat** ⚙ → **Instructions** → **New** → choose **User** (your VS Code profile), not Workspace.
+2. Add a couple of personal preferences, for example:
+   ```markdown
+   - Explain the tradeoffs of an approach before showing code.
+   - Prefer small, reviewable diffs and call out anything risky.
+   ```
+3. It syncs across your machines via **Settings Sync**; on github.com you can set matching **personal instructions** for Copilot on the web.
+
+> **The boundary to teach:** anything the *team* must follow belongs in the repo file (next stage), not your personal layer — otherwise teammates never get it.
+
+**✅ Checkpoint:** You have a personal rule that applies in *any* repo, and can explain why it doesn't belong in the team's file.
+
+## 🎯 Stage 3: Write lean repo-wide instructions (6 min)
 
 **1.** Draft from the codebase: type `/init` in chat (or **Configure Chat** ⚙ → **Generate Instructions**). It analyzes the repo and proposes a `copilot-instructions.md`.
 
@@ -57,7 +77,7 @@ and a **FastAPI (Python)** backend in `api/`. The web app calls the API at `http
 
 **✅ Checkpoint:** A short, specific, repo-wide instruction file.
 
-## 🎯 Stage 3: Add path-scoped instructions (7 min)
+## 🎯 Stage 4: Add path-scoped instructions (6 min)
 
 Repo-wide rules apply everywhere; **path-scoped** rules apply only to matching files via an `applyTo` glob. Create these:
 
@@ -87,7 +107,7 @@ applyTo: "api/**/*.py"
 
 **✅ Checkpoint:** Editing a `.tsx` or `.py` file, the matching rules now apply automatically.
 
-## 🧧 Stage 4 (Optional stretch): Author the remaining layers (+8 min)
+## 🧧 Stage 5 (Optional stretch): Author the remaining layers (+8 min)
 
 **Your goal:** Add two more artifacts that round out the team's context.
 
@@ -101,7 +121,7 @@ Create instruction files via `/instructions` → **New Instructions** (or **Conf
 
 </details>
 
-## 🎯 Stage 5: Verify the impact (6 min)
+## 🎯 Stage 6: Verify the impact (5 min)
 
 **1.** Re-run the Stage 1 request in **Agent** mode:
 ```markdown
@@ -119,6 +139,7 @@ This time it should validate the id, raise `HTTPException(404)`, and type the we
 3. **Open a PR**, then under **Reviewers**, next to **Copilot**, click **Request**. Triage its comments.
 
 ## ✅ Completion Checklist
+- [ ] Set up your personal (user) instructions
 - [ ] Rewrote `copilot-instructions.md` to be lean and specific
 - [ ] Added `web` and `api` path-scoped instructions
 - [ ] *(Optional stretch)* Added tests instructions + `AGENTS.md`
@@ -132,8 +153,8 @@ There's more than one path to good instructions — try a couple and keep what s
 
 ## 🧠 Advanced sidebar
 
-- **Precedence:** personal (user) → repository (`copilot-instructions.md` / `AGENTS.md`) → organization. Higher-priority wins on conflict.
-- **Organization-level instructions** share standards across every repo (enable `github.copilot.chat.organizationInstructions.enabled`). Great for security/compliance rules.
+- **Precedence (three layers):** personal (user) → repository (`copilot-instructions.md` / `AGENTS.md`) → organization. All three are combined; the more specific layer wins a direct conflict, and org/enterprise compliance rules can be enforced on top.
+- **Organization-level instructions (admins & leads):** set them on github.com → your org → **Settings** → **Copilot** → **Custom instructions** (or via an enterprise policy). They reach *every* repo and member automatically — the right home for standards you never want to restate: security/compliance rules, approved libraries, and language/testing baselines. In VS Code, turn on `github.copilot.chat.organizationInstructions.enabled` so Copilot honors them. Keep this layer **small and universal** — repo-specific detail stays in `copilot-instructions.md`. A healthy rollout **promotes** a proven repo rule up to the org once it has earned its place (you'll plan this in the capstone).
 - **Task-specific settings instructions** still exist for **code review**, **commit messages**, and **PR descriptions** (`github.copilot.chat.reviewSelection.instructions`, etc.) — you'll use the review one in Module 3.
 - **Measuring impact:** watch the **References** section, use the chat customization **Diagnostics** view (right-click in Chat → *Diagnostics*), and track whether reviewers stop leaving the same comments.
 

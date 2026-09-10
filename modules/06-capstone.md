@@ -24,7 +24,7 @@ Bring the artifacts from Modules 1–5 onto one branch and review them together:
 ├── AGENTS.md                      # M1
 ├── instructions/*.instructions.md # M1, M3
 ├── prompts/*.prompt.md            # M2
-├── skills/code-review/SKILL.md    # M3
+├── skills/*/SKILL.md              # M3 (review + domain)
 ├── agents/*.agent.md              # M3, M4
 ├── ISSUE_TEMPLATE/agent_task.md   # M4
 ├── pull_request_template.md       # M3
