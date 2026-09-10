@@ -1,0 +1,128 @@
+# Module 2: Designing a Reusable Prompt Library
+
+**Goal:** Build a **prompt library** that encodes your team's common workflows as one-command slash prompts — so anyone joining the project can be productive on day one. Where instructions shape *every* response passively, **prompt files** package *specific, repeatable tasks* you invoke on demand.
+
+**Estimated Time:** ~45 minutes
+**Branch:**
+```bash
+git checkout main && git pull
+git checkout -b USERNAME/module-2-prompts
+```
+
+## What You'll Learn
+- [ ] Identify the repeatable tasks worth encoding
+- [ ] Author prompt files with `agent:`, `description`, and `argument-hint`
+- [ ] Parameterize prompts with input variables
+- [ ] Build an **onboarding** prompt that orients any new joiner
+- [ ] **Ship it**: PR + Copilot review
+
+## 🎯 Stage 1: Inventory the repeatable work (5 min)
+
+In **Ask** mode:
+```markdown
+#codebase What tasks does a developer repeat often in this repo (adding an API endpoint, adding a web component, writing tests, preparing a PR)? For each, list the steps and the files touched.
+```
+Pick 3–4 to encode. Good candidates: **scaffold an endpoint**, **scaffold a component**, **write tests**, **prep a PR**, **onboard a newcomer**.
+
+**✅ Checkpoint:** A short list of prompts worth building.
+
+## 🎯 Stage 2: Your first prompt — scaffold an API endpoint (8 min)
+
+Create `.github/prompts/scaffold-endpoint.prompt.md`:
+```markdown
+---
+agent: 'agent'
+description: 'Scaffold a FastAPI endpoint with service function and a test'
+argument-hint: '<HTTP method> <path> — e.g. GET /tasks/{id}'
+tools: ['codebase', 'editFiles']
+---
+
+# Scaffold an API endpoint
+
+Add the endpoint I describe to the TaskFlow API, following `api/api.instructions.md`:
+1. A pure function in `taskflow/service.py` (type-hinted, unit-testable).
+2. A route in `taskflow/app.py` using a Pydantic model for any body; validate input and raise `HTTPException` on bad data.
+3. A pytest in `tests/` covering the happy path and one edge case.
+
+Ask me for the method/path if I didn't provide it, then implement and stop.
+```
+Run it: `/scaffold-endpoint GET /tasks/{id}`.
+
+**✅ Checkpoint:** One command scaffolds service + route + test.
+
+## 🎯 Stage 3: A web component prompt (6 min)
+
+Create `.github/prompts/scaffold-component.prompt.md`:
+```markdown
+---
+agent: 'agent'
+description: 'Scaffold a typed React component with loading/error states'
+argument-hint: '<ComponentName> and what it renders'
+tools: ['codebase', 'editFiles']
+---
+
+# Scaffold a web component
+
+Create a React + TypeScript component under `web/src/components/`, following `web/web.instructions.md`:
+- Typed props (no `any`); data typed via `src/types.ts`.
+- Explicit loading and error states for any async data.
+- A colocated test using React Testing Library + `userEvent`.
+
+Ask me for the component name and purpose if missing, then implement and stop.
+```
+Try it: `/scaffold-component TaskFilter that filters the list by status`.
+
+**✅ Checkpoint:** Generated components follow your web conventions by default.
+
+## 🧗 Stage 4 (Challenge): The onboarding prompt (10 min)
+
+**Your goal:** Create `.github/prompts/onboard-me.prompt.md` — the *first thing* a new hire runs. It should explain the repo without them reading every file.
+
+**Done when your prompt:**
+- [ ] Uses `agent: 'ask'` (it explains; it doesn't edit).
+- [ ] Summarizes the architecture (web ↔ api), how to run both, and the key conventions.
+- [ ] Points to where things live and lists the current known rough edges.
+- [ ] Ends by suggesting a good first task.
+
+<details><summary>💡 Stuck? Reveal a hint</summary>
+
+Create it via `/prompts` → **New Prompt** (or `/create-prompt`). Have the body instruct Copilot to read `#codebase`, the READMEs, and the instruction files, then produce a 1-page orientation. Test it by running `/onboard-me`.
+
+</details>
+
+## 🧗 Stage 5 (Challenge): A workflow prompt — prep a PR (6 min)
+
+**Your goal:** Create `.github/prompts/prep-pr.prompt.md` that gets a change ready to ship.
+
+**Done when it:**
+- [ ] Summarizes the current diff, flags missing tests, and drafts a PR title + description.
+- [ ] Reminds the author to run `pytest` (api) and `npm run typecheck` (web).
+
+<details><summary>💡 Stuck? Reveal a hint</summary>
+
+Use the `changes` context and `agent: 'agent'`. Body: "Summarize staged changes, list any logic without tests, and output a PR title + description with a testing checklist."
+
+</details>
+
+## 🚀 Ship it (4 min)
+1. **Commit** your `.github/prompts/` library.
+2. **Push:** `git push -u origin USERNAME/module-2-prompts`
+3. **Open a PR** and request a **Copilot review**.
+
+## ✅ Completion Checklist
+- [ ] Built `scaffold-endpoint` and `scaffold-component`
+- [ ] Built the `onboard-me` orientation prompt
+- [ ] Built `prep-pr`
+- [ ] Opened a PR and got a Copilot review
+
+## 🧠 Advanced sidebar
+
+- **Prompts vs. instructions vs. skills vs. agents:** *instructions* shape every response; *prompts* run a specific task on demand; *skills* are reference knowledge Copilot pulls in when relevant; *custom agents* bundle instructions + tools into a mode. Use the [customization decision matrix](https://code.visualstudio.com/docs/agents/concepts/customization) when unsure.
+- **Input variables:** `${input:name}` / `${input:name:placeholder}` and `argument-hint` make prompts parameterized and discoverable.
+- **Sharing & sync:** workspace prompts live in `.github/prompts` (versioned with the repo); user prompts sync across your devices via Settings Sync. Browse community examples in [Awesome Copilot](https://github.com/github/awesome-copilot).
+
+## 🏁 What's Next?
+Continue to [Module 3: Code Review Mastery](03-code-review.md).
+
+### 🌟 Take-home challenge
+Encode your real team's "definition of done" as a `prep-pr` prompt, and write an `onboard-me` prompt for your actual repo. Hand it to the next new hire and see how far it gets them before they ask a human.
