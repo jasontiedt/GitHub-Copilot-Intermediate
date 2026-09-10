@@ -19,9 +19,9 @@ git checkout -b USERNAME/module-3-review
 
 ## 🎯 Stage 1: Review in the editor (6 min)
 
-**1. Inline review.** Open [api/taskflow/service.py](../api/taskflow/service.py), select `top_priority`, right-click → **Generate Code** → **Review**. Read the comments inline and in the **Comments** panel.
+**1. Review a selection.** Open [api/taskflow/service.py](../api/taskflow/service.py) and select `top_priority`. Right-click and look for **Generate Code** → **Review** — this selection-review entry rolls out gradually and depends on your VS Code version and Copilot plan, so it may not be there. If you don't see it, select the code, open **Copilot Chat**, and ask *"Review this selection and flag bugs or risky code."* Either way, read the feedback inline / in the **Comments** panel (or in Chat).
 
-**2. Source Control review.** Make a small edit somewhere, then open **Source Control**, hover **CHANGES**, and click **Code Review - Changes**. Comments appear inline and in the **Problems** tab.
+**2. Source Control review.** Make a small edit somewhere, then open **Source Control**, hover **CHANGES**, and click the **code review** button (a comment icon with a sparkle). Comments appear inline and in the **Problems** tab. This surface is the most reliable local review path.
 
 **✅ Checkpoint:** You've reviewed a selection and a set of changes locally.
 
@@ -127,7 +127,7 @@ Each skill is a folder under `.github/skills/` with a `SKILL.md` whose frontmatt
 
 ## 🔀 Try it another way
 Copilot review shows up in several places — run the same change through a couple and see what each catches:
-- **Three surfaces, one bug:** review `top_priority` as an inline selection, then via the code-review button beside **CHANGES** in Source Control, then on a **PR**. The PR review sees the whole change; inline stays tightly focused.
+- **Three surfaces, one bug:** review `top_priority` as a selection (the right-click **Generate Code → Review** entry, or by asking Copilot Chat to review it), then via the code-review button beside **CHANGES** in Source Control, then on a **PR**. The PR review sees the whole change; the selection review stays tightly focused.
 - **Agent vs. instructions:** review a diff with just your `code-review.instructions.md` in place, then again using your **Reviewer agent**. Compare how the findings are organized.
 
 ## 🧠 Advanced sidebar
