@@ -135,7 +135,7 @@ jobs:
 
 - **Subagents:** a custom agent can delegate to other agents for multi-step work — useful for large refactors.
 - **Automations:** start agent sessions automatically on events (issue opened, failing Actions run) or on a schedule.
-- **Governance & guardrails:** restrict the agent's **tools** (least privilege), configure the **firewall** (allowed domains), and require review before merge. Keep the agent's env reproducible via the setup-steps file.
+- **Keeping it safe:** give the agent only the **tools** it needs, configure the **firewall** (allowed domains), and require review before merge. Keep the agent's environment consistent via the setup-steps file.
 - **Where agents run:** the same custom agents work locally, on the coding agent, and on cloud harnesses — write them once.
 
 ## 🏁 What's Next?

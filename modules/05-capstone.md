@@ -1,6 +1,6 @@
-# Module 5: Capstone — Team Enablement Playbook
+# Module 5: Capstone — Roll It Out to Your Team
 
-**Goal:** Bring everything together into a **team enablement playbook** — the artifacts and rollout plan that make Copilot a consistent, measurable part of how your team works. By the end you'll have a portable `.github/` pack plus a written plan you could hand to any team.
+**Goal:** Bring everything together into a **team rollout plan** — the artifacts and the written plan that make Copilot a consistent, measurable part of how your team works. By the end you'll have a reusable `.github/` pack plus a plan you could hand to any team.
 
 **Estimated Time:** ~40 minutes
 **Branch:**
@@ -11,13 +11,13 @@ git checkout -b USERNAME/module-5-capstone
 
 ## What You'll Build
 - [ ] A coherent, audited `.github/` customization pack
-- [ ] Team plumbing: CODEOWNERS, CI, issue/PR templates
-- [ ] An **`ENABLEMENT.md`** playbook (rollout + metrics + governance)
+- [ ] Team setup files: CODEOWNERS, CI, issue/PR templates
+- [ ] A **`ROLLOUT.md`** plan (how to use it + metrics + safe-use rules)
 - [ ] A **Copilot Space** for shared team context
 
 ## 🎯 Stage 1: Audit & assemble the pack (8 min)
 
-Bring the artifacts from Modules 1–4 onto one branch and sanity-check them together:
+Bring the artifacts from Modules 1–4 onto one branch and review them together:
 ```text
 .github/
 ├── copilot-instructions.md        # M1
@@ -34,7 +34,7 @@ Ask Copilot: *"Review my `.github/` customization files for overlap, contradicti
 
 **✅ Checkpoint:** No duplicated or conflicting rules across the pack.
 
-## 🧗 Stage 2 (Challenge): Add team plumbing (10 min)
+## 🧗 Stage 2 (Challenge): Add supporting team files (10 min)
 
 **Your goal:** Make the standards enforceable, not just advisory.
 
@@ -49,27 +49,27 @@ Ask Agent mode to "add a CI workflow that runs the api tests and the web typeche
 
 </details>
 
-## 🧗 Stage 3 (Challenge): Write the enablement playbook (10 min)
+## 🧗 Stage 3 (Challenge): Write the rollout plan (10 min)
 
-**Your goal:** Create `ENABLEMENT.md` at the repo root — the human-readable plan.
+**Your goal:** Create `ROLLOUT.md` at the repo root — the plain-English plan.
 
 **Done when it covers:**
 - [ ] **What we standardized** and why (link the `.github/` artifacts).
 - [ ] **How to use it** — the prompt library, the Reviewer agent, delegating to the coding agent.
 - [ ] **Rollout** — phases (pilot → team → org), who owns the instructions/prompts.
 - [ ] **Metrics** — what "working" looks like (fewer repeat review comments, faster PRs, adoption).
-- [ ] **Governance** — least-privilege tools, review-before-merge, keeping instructions lean and current.
+- [ ] **Safe use** — give the agent only the tools it needs, review before merge, keep instructions current.
 
 <details><summary>💡 Stuck? Reveal a hint</summary>
 
-Ask Copilot to "draft an ENABLEMENT.md from the `.github/` artifacts in this repo," then edit it to match how your team actually operates. Keep it to ~2 pages.
+Ask Copilot to "draft a ROLLOUT.md from the `.github/` artifacts in this repo," then edit it to match how your team actually operates. Keep it to ~2 pages.
 
 </details>
 
 ## 🎯 Stage 4: Create a Copilot Space (5 min)
 
 On [github.com/copilot](https://github.com/copilot), create a **Copilot Space** for the team:
-1. Add this repository and the key docs (`ENABLEMENT.md`, instruction files) as context.
+1. Add this repository and the key docs (`ROLLOUT.md`, instruction files) as context.
 2. Set the Space's goal (e.g., "Onboard and support TaskFlow contributors").
 3. Share it with the team — now anyone can chat with the project's shared context.
 
@@ -80,24 +80,24 @@ On [github.com/copilot](https://github.com/copilot), create a **Copilot Space** 
 Decide how you'll keep this alive:
 - Track **usage** (org Copilot dashboards) and **review acceptance** (are Copilot's suggestions applied?).
 - Watch for **repeat review comments** — each one is a candidate for a new instruction rule.
-- Put instructions/prompts on a **review cadence** so they don't go stale.
+- Review instructions/prompts on a **regular schedule** so they don't go stale.
 
 ## 🚀 Ship it (4 min)
-1. **Commit** the plumbing + `ENABLEMENT.md`.
+1. **Commit** the supporting files + `ROLLOUT.md`.
 2. **Push:** `git push -u origin USERNAME/module-5-capstone`
-3. **Open a PR** and request a **Copilot review** — this PR *is* your enablement pack landing.
+3. **Open a PR** and request a **Copilot review** — this PR lands your whole rollout pack.
 
 ## ✅ Completion Checklist
 - [ ] Audited and assembled the `.github/` pack
 - [ ] Added CODEOWNERS + CI + issue templates
-- [ ] Wrote `ENABLEMENT.md`
+- [ ] Wrote `ROLLOUT.md`
 - [ ] Created a Copilot Space
-- [ ] Defined metrics + a refresh cadence
+- [ ] Defined metrics + a refresh schedule
 - [ ] Opened a PR and got a Copilot review
 
 ## 🎉 You're done!
 
-You've turned a messy polyglot repo into one with **team-wide instructions**, a **reusable prompt library**, **codified review standards**, **agent-ready delegation**, and a **rollout plan** — all portable to your real projects.
+You've turned a messy polyglot repo into one with **team-wide instructions**, a **reusable prompt library**, **written-down review standards**, **agent-ready delegation**, and a **rollout plan** — all reusable in your real projects.
 
 ### 🌟 Take-home challenge
-Run this playbook on one of your team's real repositories: land a lean instruction pack + an onboarding prompt + a Reviewer agent + a CI gate in a single "Copilot enablement" PR, and present the before/after to your team.
+Run this plan on one of your team's real repositories: land a focused instruction pack + an onboarding prompt + a Reviewer agent + a CI gate in a single "Copilot rollout" PR, and show the before/after to your team.

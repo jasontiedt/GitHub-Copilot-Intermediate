@@ -1,18 +1,18 @@
 # GitHub Copilot for Teams — Intermediate & Advanced Workshop
 
-A hands-on workshop that takes GitHub Copilot **beyond individual productivity** and into **team-scale practices**. You'll learn to standardize Copilot across a real project: effective project-wide **custom instructions**, a reusable **prompt library** for anyone who joins, **code-review mastery**, and **coding-agent** delegation — then package it all into a team enablement playbook.
+A hands-on workshop that takes GitHub Copilot **beyond individual productivity** and into **team-scale practices**. You'll learn to standardize Copilot across a real project: effective project-wide **custom instructions**, a reusable **prompt library** for anyone who joins, **code-review mastery**, and **coding-agent** delegation — then roll it out to your whole team.
 
 > **Level:** Intermediate → Advanced. This workshop assumes you already use Copilot day-to-day (chat, inline, agent mode) and want to make it consistent and effective for a whole team.
 
 ## 🧪 The sample project: **TaskFlow**
 
-A deliberately **imperfect** polyglot monorepo — the perfect substrate for teaching team standards, review, and delegation:
+A deliberately **imperfect** polyglot monorepo — a realistic codebase to practice team standards, review, and delegation on:
 
 - **`web/`** — a React + TypeScript (Vite) frontend
 - **`api/`** — a FastAPI (Python) backend
 - **On purpose:** inconsistent conventions, thin tests, a couple of **planted bugs**, `TODO`s, a weak `copilot-instructions.md`, and **no CI**.
 
-Your job across the modules is to use Copilot to bring TaskFlow up to a **team standard** — and to build the reusable `.github/` assets that make that standard stick.
+Across the modules you'll **practice Copilot on real scenarios** — bringing TaskFlow up to a team standard and building reusable `.github/` assets your team can keep. The point is the Copilot practice, not getting the app to run.
 
 ## 📁 Repository layout
 
@@ -29,7 +29,9 @@ copilot-advanced-workshop/
 └── modules/                         # the workshop (0–5)
 ```
 
-## 🚀 Run TaskFlow
+## 🚀 Run it (optional)
+
+You **don't need the app running** to do the workshop — every module is about practicing Copilot on the code. Run it only if you'd like to see your changes live.
 
 **API** (Python 3.10+):
 ```bash
@@ -37,7 +39,6 @@ cd api
 python -m venv .venv && . .venv/Scripts/activate   # macOS/Linux: source .venv/bin/activate
 pip install -r requirements.txt
 uvicorn main:app --reload --port 8000               # http://localhost:8000/docs
-pytest                                              # thin suite — passes today
 ```
 
 **Web** (Node 18+):
@@ -54,12 +55,12 @@ Work through the modules in order. Each is intermediate→advanced, staged (guid
 
 | # | Module | You'll build | Est. |
 | - | ------ | ------------ | ---- |
-| 0 | [Setup & Orientation](modules/00-setup.md) | A running app + a map of its rough edges | ~15 min |
+| 0 | [Setup & Orientation](modules/00-setup.md) | A tour of the code + its rough edges | ~10 min |
 | 1 | [Team-Scale Custom Instructions](modules/01-team-instructions.md) | Repo-wide + path-scoped instructions your whole team benefits from | ~45 min |
 | 2 | [Designing a Reusable Prompt Library](modules/02-prompt-library.md) | An onboarding prompt library anyone can run day one | ~45 min |
 | 3 | [Code Review Mastery](modules/03-code-review.md) | Review standards + a Reviewer agent + PR template | ~45 min |
 | 4 | [Coding Agent at Scale](modules/04-coding-agent.md) | Agent-ready issues, custom agents, MCP, agent env | ~50 min |
-| 5 | [Capstone: Team Enablement Playbook](modules/05-capstone.md) | A rollout plan that ties it all together | ~40 min |
+| 5 | [Capstone: Roll It Out to Your Team](modules/05-capstone.md) | A rollout plan that ties it all together | ~40 min |
 
 See the [module index](modules/README.md) for details.
 

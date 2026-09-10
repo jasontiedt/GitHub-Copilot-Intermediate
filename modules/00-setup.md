@@ -1,51 +1,55 @@
 # Module 0: Setup & Orientation
 
-Get TaskFlow running and map the rough edges you'll fix with Copilot across the workshop.
+Get to know TaskFlow — the code you'll practice Copilot on — and spot the rough edges you'll work with across the modules. **You don't need to run anything to do the workshop.**
 
-**Estimated Time:** ~15 minutes
+**Estimated Time:** ~10 minutes
 
 ## What You'll Do
-- [ ] Run the API and the web app
-- [ ] Confirm Copilot is active and configured
 - [ ] Tour the codebase and its deliberate weaknesses
+- [ ] Confirm Copilot is active
 - [ ] Learn the branch-per-module convention
+- [ ] (Optional) run the app to see it live
 
 ## 🧰 Prerequisites
 
 - **VS Code** 1.99+ with **GitHub Copilot** + **Copilot Chat**
-- **Node.js** 18+, **Python** 3.10+, **Git**
-- A **GitHub** account with Copilot (Business/Enterprise unlocks org-level features used in the advanced sidebars)
+- **Git** and a **GitHub** account with Copilot (Business/Enterprise unlocks the org-level features in the advanced sidebars)
+- To *run* the app (optional): **Node.js** 18+ and **Python** 3.10+
 
-## 🚀 Step 1: Run the app (8 min)
+## 🗺️ Step 1: Meet the codebase (5 min)
 
-**API** (terminal 1):
-```bash
-cd api
-python -m venv .venv && . .venv/Scripts/activate   # macOS/Linux: source .venv/bin/activate
-pip install -r requirements.txt
-uvicorn main:app --reload --port 8000              # open http://localhost:8000/docs
+You'll practice Copilot *on* this code, so get a feel for the layout first:
+- **`web/`** — the React + TypeScript frontend (`src/App.tsx`, `src/api.ts`, `src/components/`).
+- **`api/`** — the FastAPI backend (`taskflow/service.py` holds the logic).
+- **`modules/`** — the workshop itself.
+
+Open a couple of files, then practice with Copilot Chat:
+```markdown
+#codebase Give me a 5-line tour of this repo: what each folder does and where the main logic lives.
 ```
 
-**Web** (terminal 2):
+<details><summary>Optional: run the app to see it live</summary>
+
 ```bash
-cd web
-npm install
-npm run dev                                        # open http://localhost:5173
+# API (terminal 1)
+cd api && python -m venv .venv && . .venv/Scripts/activate
+pip install -r requirements.txt && uvicorn main:app --reload --port 8000   # http://localhost:8000/docs
+
+# Web (terminal 2)
+cd web && npm install && npm run dev                                       # http://localhost:5173
 ```
 
-You should see the TaskFlow board. Create a task, advance one, and hit the API's `/docs`.
+</details>
 
-**✅ Checkpoint:** Both servers run and the web app lists tasks from the API.
+**✅ Checkpoint:** You can say where the frontend, backend, and workshop live.
 
-## 🗺️ Step 2: Tour the rough edges (5 min)
+## 🔎 Step 2: Spot the rough edges with Copilot (3 min)
 
-This app is **deliberately imperfect** — that's your raw material. Skim these and the "Known rough edges" in [api/README.md](../api/README.md) and [web/README.md](../web/README.md):
-
-- **`api/taskflow/service.py`** — a sort bug in `top_priority`, no validation in `update_status`/`create_task`, inconsistent typing.
-- **`web/src/api.ts`** — `any` return types, no error handling, hard-coded base URL.
-- **`web/src/components/NewTaskForm.tsx`** — hard-coded assignee, no loading/error state.
-- **`.github/copilot-instructions.md`** — thin and generic; Copilot can't follow conventions it doesn't know.
-- **No CI, no PR template, no issue templates, no prompt library, no custom agents.**
+This app is **deliberately imperfect** — that's the point. Practice using Copilot to find things to improve. Skim the "Known rough edges" in [api/README.md](../api/README.md) and [web/README.md](../web/README.md), then try:
+```markdown
+#file:api/taskflow/service.py Point out any bugs or risky spots in this file.
+```
+See if Copilot flags the sort direction in `top_priority`, the missing validation, and the `any` types over in `web/src/api.ts`.
 
 **✅ Checkpoint:** You can point to at least three concrete weaknesses.
 
@@ -58,8 +62,8 @@ git checkout -b USERNAME/module-1-instructions
 ```
 
 ## ✅ Completion Checklist
-- [ ] API and web both run
-- [ ] Toured the rough edges
+- [ ] Toured the codebase and its rough edges
+- [ ] Confirmed Copilot is active
 - [ ] Know the branch-per-module flow
 
 ## 🏁 What's Next?

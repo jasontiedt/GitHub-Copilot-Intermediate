@@ -1,6 +1,6 @@
 # Module 3: Code Review Mastery
 
-**Goal:** Make code review faster and more consistent with Copilot — from inline review while you code, to a **Copilot review on the PR**, to **codifying your team's review standards** so every review (human or AI) checks the same things. TaskFlow's planted bugs and gaps are your test subjects.
+**Goal:** Make code review faster and more consistent with Copilot — from inline review while you code, to a **Copilot review on the PR**, to **writing down your team's review standards** so every review (human or AI) checks the same things. TaskFlow's planted bugs and gaps give you plenty to catch.
 
 **Estimated Time:** ~45 minutes
 **Branch:**
@@ -100,7 +100,7 @@ The skill's frontmatter needs `name` and `description`. Keep the checklist ident
 
 - **Automatic reviews:** repository/org **rulesets** can make Copilot review *every* PR, and optionally re-review new pushes.
 - **Copilot approvals (preview):** Copilot can leave an *approving* review that counts toward required approvals, configurable per repo/org/path.
-- **Review environment:** Copilot review runs in an ephemeral env you can customize with `.github/workflows/copilot-setup-steps.yml` (preinstall tools) — the same file you'll add in Module 4.
+- **Review environment:** Copilot review runs in a temporary environment you can customize with `.github/workflows/copilot-setup-steps.yml` (preinstall tools) — the same file you'll add in Module 4.
 - **MCP & skills in review:** Copilot code review can use repo skills and MCP servers (GitHub, Playwright) when relevant.
 
 ## 🏁 What's Next?

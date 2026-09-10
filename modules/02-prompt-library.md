@@ -1,6 +1,6 @@
 # Module 2: Designing a Reusable Prompt Library
 
-**Goal:** Build a **prompt library** that encodes your team's common workflows as one-command slash prompts — so anyone joining the project can be productive on day one. Where instructions shape *every* response passively, **prompt files** package *specific, repeatable tasks* you invoke on demand.
+**Goal:** Build a **prompt library** that turns your team's common tasks into one-command slash prompts — so anyone joining the project can be productive on day one. Instructions shape *every* response; **prompt files** handle *specific, repeatable tasks* you run on demand.
 
 **Estimated Time:** ~45 minutes
 **Branch:**
@@ -13,7 +13,7 @@ git checkout -b USERNAME/module-2-prompts
 - [ ] Identify the repeatable tasks worth encoding
 - [ ] Author prompt files with `agent:`, `description`, and `argument-hint`
 - [ ] Parameterize prompts with input variables
-- [ ] Build an **onboarding** prompt that orients any new joiner
+- [ ] Build an **onboarding** prompt that helps anyone new get started
 - [ ] **Ship it**: PR + Copilot review
 
 ## 🎯 Stage 1: Inventory the repeatable work (5 min)
@@ -22,7 +22,7 @@ In **Ask** mode:
 ```markdown
 #codebase What tasks does a developer repeat often in this repo (adding an API endpoint, adding a web component, writing tests, preparing a PR)? For each, list the steps and the files touched.
 ```
-Pick 3–4 to encode. Good candidates: **scaffold an endpoint**, **scaffold a component**, **write tests**, **prep a PR**, **onboard a newcomer**.
+Pick 3–4 to turn into prompts. Good candidates: **scaffold an endpoint**, **scaffold a component**, **write tests**, **prep a PR**, **onboard a newcomer**.
 
 **✅ Checkpoint:** A short list of prompts worth building.
 
@@ -86,7 +86,7 @@ Try it: `/scaffold-component TaskFilter that filters the list by status`.
 
 <details><summary>💡 Stuck? Reveal a hint</summary>
 
-Create it via `/prompts` → **New Prompt** (or `/create-prompt`). Have the body instruct Copilot to read `#codebase`, the READMEs, and the instruction files, then produce a 1-page orientation. Test it by running `/onboard-me`.
+Create it via `/prompts` → **New Prompt** (or `/create-prompt`). Have the body tell Copilot to read `#codebase`, the READMEs, and the instruction files, then produce a 1-page overview. Test it by running `/onboard-me`.
 
 </details>
 
@@ -111,7 +111,7 @@ Use the `changes` context and `agent: 'agent'`. Body: "Summarize staged changes,
 
 ## ✅ Completion Checklist
 - [ ] Built `scaffold-endpoint` and `scaffold-component`
-- [ ] Built the `onboard-me` orientation prompt
+- [ ] Built the `onboard-me` prompt
 - [ ] Built `prep-pr`
 - [ ] Opened a PR and got a Copilot review
 

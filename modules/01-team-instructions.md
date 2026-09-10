@@ -1,6 +1,6 @@
 # Module 1: Team-Scale Custom Instructions
 
-**Goal:** Turn TaskFlow's thin, generic `copilot-instructions.md` into a **layered instruction set** that makes Copilot follow *your team's* conventions automatically — for every developer, in every chat, forever. Effective instructions are one of the highest-leverage things a team can do with Copilot: write them once, and every generation gets better.
+**Goal:** Turn TaskFlow's thin, generic `copilot-instructions.md` into layered instructions that make Copilot follow *your team's* conventions automatically. Good instructions are one of the most useful things a team can set up: write them once, and every response gets better.
 
 **Estimated Time:** ~45 minutes
 **Branch:**
@@ -11,7 +11,7 @@ git checkout -b USERNAME/module-1-instructions
 
 ## What You'll Learn
 - [ ] Audit an ineffective instruction file and see its impact (or lack of it)
-- [ ] Write a **lean, high-signal** repo-wide `copilot-instructions.md`
+- [ ] Write a **short, focused** repo-wide `copilot-instructions.md`
 - [ ] Add **path-scoped** `.instructions.md` for `web/`, `api/`, and tests
 - [ ] Use **`AGENTS.md`** for cross-tool, "what's intentional" context
 - [ ] Verify instructions actually change Copilot's output
@@ -33,7 +33,7 @@ Watch what Copilot produces. Because the instructions are thin, it likely return
 
 **1.** Draft from the codebase: type `/init` in chat (or **Configure Chat** ⚙ → **Generate Instructions**). It analyzes the repo and proposes a `copilot-instructions.md`.
 
-**2.** **Prune ruthlessly.** A good instruction file is short and high-signal — it captures the *non-obvious, team-specific* rules, not everything a linter already enforces. Replace the file with something like:
+**2.** **Prune hard.** A good instruction file is short and specific — it captures the *non-obvious, team-specific* rules, not everything a linter already enforces. Replace the file with something like:
 
 ```markdown
 # TaskFlow — Copilot instructions
@@ -53,7 +53,7 @@ and a **FastAPI (Python)** backend in `api/`. The web app calls the API at `http
 - HTTP layer: `api/taskflow/app.py`. Web API client: `web/src/api.ts`.
 ```
 
-> 💡 **Why lean?** Long instruction files get ignored and go stale. Each rule should be atomic, non-obvious, and ideally explain *why*.
+> 💡 **Why short?** Long instruction files get ignored and go stale. Each rule should be one idea, non-obvious, and ideally explain *why*.
 
 **✅ Checkpoint:** A short, specific, repo-wide instruction file.
 
@@ -111,7 +111,7 @@ This time it should validate the id, raise `HTTPException(404)`, and type the we
 
 **2.** Open the chat response's **References** to confirm which instruction files were applied.
 
-**✅ Checkpoint:** Same prompt, materially better output — because the team's rules are now in context.
+**✅ Checkpoint:** Same prompt, clearly better output — because the team's rules are now in context.
 
 ## 🚀 Ship it (4 min)
 1. **Commit** your instruction pack (generate the message with Copilot).
@@ -136,4 +136,4 @@ This time it should validate the id, raise `HTTPException(404)`, and type the we
 Continue to [Module 2: Designing a Reusable Prompt Library](02-prompt-library.md).
 
 ### 🌟 Take-home challenge
-Bring your **own** repo's `copilot-instructions.md` down to 20 high-signal lines, then add one path-scoped `.instructions.md` for its hottest area. Measure whether review comments drop over the next week.
+Bring your **own** repo's `copilot-instructions.md` down to 20 focused lines, then add one path-scoped `.instructions.md` for its busiest area. See whether review comments drop over the next week.

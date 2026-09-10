@@ -12,7 +12,7 @@ npm run typecheck  # tsc --noEmit
 
 ## ⚠️ Known rough edges (deliberate)
 
-Raw material for the instructions, review, and agent modules — don't fix them yet:
+You'll practice on these in the instructions, review, and agent modules — don't fix them yet:
 
 - **`src/api.ts`** returns `any` and has no error handling; the base URL is hard-coded.
 - **`NewTaskForm`** hard-codes the assignee (`'me'`), has no loading/error state, and allows empty titles.
