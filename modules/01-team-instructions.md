@@ -44,7 +44,7 @@ Instructions come in three layers — **personal → repo → org** — that sta
    - Prefer small, reviewable diffs and call out anything risky.
    ```
 3. For the Local harness, run **Settings Sync: Configure** from the Command Palette and enable **Prompts and Instructions** to sync this file. Agent Host sessions instead read personal instructions from `~/.copilot/instructions`; they do not read instructions stored only in VS Code profile data.
-4. GitHub.com has a separate personal-instructions setting: open [Copilot Chat](https://github.com/copilot), select your profile picture in the lower-left corner → **Personal instructions**, enter the preferences, and click **Save**.
+4. GitHub.com has a separate personal-instructions setting: open [Copilot Chat](https://triwest-healthcare-alliance.ghe.com/copilot), select your profile picture in the lower-left corner → **Personal instructions**, enter the preferences, and click **Save**.
 
 > **The boundary to teach:** anything the *team* must follow belongs in the repo file (next stage), not your personal layer — otherwise teammates never get it.
 
