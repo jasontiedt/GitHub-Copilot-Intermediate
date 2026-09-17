@@ -16,6 +16,7 @@ pytest                                             # optional: the thin test sui
 | Method | Path | Notes |
 | ------ | ---- | ----- |
 | GET | `/tasks?status=&assignee=` | list/filter tasks |
+| GET | `/tasks/{id}` | a single task (404 when missing) |
 | POST | `/tasks` | create a task |
 | PATCH | `/tasks/{id}` | update status |
 | GET | `/stats` | counts by status |

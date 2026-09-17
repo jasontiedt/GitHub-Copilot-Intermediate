@@ -13,6 +13,11 @@ def list_tasks(store, status=None, assignee=None):
     return tasks
 
 
+def get_task(store, task_id: int) -> Task | None:
+    """Return the task with `task_id`, or None when it does not exist."""
+    return store.get(task_id)
+
+
 def create_task(store, title, assignee, priority=3, tags=None):
     # TODO: validate priority range (1..5) and reject empty titles
     task = Task(store.next_id(), title, "todo", assignee, priority, tags or [])

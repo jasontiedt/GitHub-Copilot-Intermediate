@@ -45,6 +45,14 @@ def get_tasks(status: str | None = None, assignee: str | None = None):
     return [_dump(t) for t in service.list_tasks(store, status, assignee)]
 
 
+@app.get("/tasks/{task_id}")
+def get_task(task_id: int):
+    t = service.get_task(store, task_id)
+    if t is None:
+        raise HTTPException(status_code=404, detail="task not found")
+    return _dump(t)
+
+
 @app.post("/tasks")
 def post_task(body: NewTask):
     t = service.create_task(store, body.title, body.assignee, body.priority, body.tags)
