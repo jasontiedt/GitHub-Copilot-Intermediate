@@ -1,6 +1,6 @@
 # Workshop Modules
 
-Seven modules that take Copilot from individual use to a **team standard** for the TaskFlow project. Each module is a scenario for practicing Copilot — you don't need the app running. Work in order; each builds artifacts the later modules reuse.
+Eight modules that take Copilot from individual use to a **team standard** for the TaskFlow project. Each module is a scenario for practicing Copilot — you don't need the app running. Work in order; each builds artifacts the later modules reuse.
 
 | # | Module | You'll build |
 | - | ------ | ------------ |
@@ -11,6 +11,7 @@ Seven modules that take Copilot from individual use to a **team standard** for t
 | 4 | [Coding Agent at Scale](04-coding-agent.md) | Agent-ready issues, custom agents, MCP, agent env |
 | 5 | [AI-Assisted Sprint Delegation](05-sprint-delegation.md) | A Sunday-night batch that delegates a sprint to Copilot |
 | 6 | [Capstone: Roll It Out to Your Team](06-capstone.md) | A rollout plan that ties it together |
+| 7 | [Talk to a Database with MCP (Oracle)](07-mcp-oracle.md) | A read-only Oracle MCP server + seeded HR database |
 
 ## 🔁 How each module works
 

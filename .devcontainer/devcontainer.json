@@ -1,0 +1,23 @@
+{
+  "name": "TaskFlow Oracle MCP Lab",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  // Oracle Database Free needs headroom; ask Codespaces for a big-enough machine.
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "16gb",
+    "storage": "32gb"
+  },
+  "forwardPorts": [1521],
+  "portsAttributes": {
+    "1521": { "label": "Oracle DB", "onAutoForward": "silent" }
+  },
+  // Install the TypeScript MCP server's dependencies once the container is created.
+  "postCreateCommand": "bash .devcontainer/postCreate.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": ["GitHub.copilot", "GitHub.copilot-chat"]
+    }
+  }
+}
