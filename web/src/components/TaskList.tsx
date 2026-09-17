@@ -8,6 +8,10 @@ export function TaskList({ tasks, onChanged }: { tasks: Task[]; onChanged: () =>
     onChanged();
   };
 
+  if (tasks.length === 0) {
+    return <p>No tasks yet. Add your first task above.</p>;
+  }
+
   return (
     <ul style={{ listStyle: 'none', padding: 0 }}>
       {tasks.map((t) => (
