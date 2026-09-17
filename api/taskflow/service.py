@@ -13,7 +13,8 @@ def list_tasks(store, status=None, assignee=None):
     return tasks
 
 
-def get_task(store, task_id):
+def get_task(store, task_id) -> Task | None:
+    """Return the task with `task_id`, or None when it does not exist."""
     return store.get(task_id)
 
 

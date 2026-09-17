@@ -6,11 +6,12 @@ client = TestClient(app)
 
 
 def test_get_task_returns_task():
-    res = client.get("/tasks/1")
+    created = client.post("/tasks", json={"title": "Read the docs", "assignee": "dave"}).json()
+
+    res = client.get(f"/tasks/{created['id']}")
+
     assert res.status_code == 200
-    body = res.json()
-    assert body["id"] == 1
-    assert body["title"] == "Set up CI pipeline"
+    assert res.json() == created
 
 
 def test_get_task_missing_returns_404():
