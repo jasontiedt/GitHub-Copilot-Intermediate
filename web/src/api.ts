@@ -1,4 +1,13 @@
+import type { Task } from './types';
+
 const BASE = 'http://localhost:8000';
+
+export async function getTask(id: number): Promise<Task | null> {
+  const res = await fetch(`${BASE}/tasks/${id}`);
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(`Failed to load task ${id}: ${res.status}`);
+  return (await res.json()) as Task;
+}
 
 export async function getTasks(): Promise<any> {
   const res = await fetch(`${BASE}/tasks`);
