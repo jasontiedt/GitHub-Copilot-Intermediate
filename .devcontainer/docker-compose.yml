@@ -1,0 +1,34 @@
+name: taskflow-oracle-mcp
+
+services:
+  # The dev container VS Code attaches to. Holds Node + the TypeScript MCP server.
+  app:
+    image: mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm
+    volumes:
+      - ..:/workspace:cached
+    command: sleep infinity
+    environment:
+      # Inside the dev container the database is reachable by its compose service name.
+      ORACLE_CONNECT_STRING: oracle:1521/FREEPDB1
+    depends_on:
+      oracle:
+        condition: service_healthy
+
+  # Disposable Oracle Database 23ai Free, seeded with the HR sample schema on first boot.
+  oracle:
+    image: gvenzl/oracle-free:slim-faststart
+    ports:
+      - "1521:1521"
+    environment:
+      # No admin password is committed: a random SYS/SYSTEM password is generated per container.
+      ORACLE_RANDOM_PASSWORD: "yes"
+    volumes:
+      # *.sql files here run once, as SYS, on first initialization (alphabetical order).
+      - ../db/seed:/container-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+      start_interval: 5s

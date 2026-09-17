@@ -1,0 +1,23 @@
+{
+  // Read-only MCP server for the Oracle HR sample schema (Module 7 lab).
+  // The read-only DB password is supplied at runtime via an input prompt — never hardcoded.
+  "inputs": [
+    {
+      "id": "oracle-ro-password",
+      "type": "promptString",
+      "description": "Password for the read-only Oracle user 'hr_ro' (the throwaway lab value in db/seed/02_readonly_user.sql).",
+      "password": true
+    }
+  ],
+  "servers": {
+    "taskflow-oracle": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "tsx", "${workspaceFolder}/mcp/src/server.ts"],
+      "env": {
+        "ORACLE_USER": "hr_ro",
+        "ORACLE_PASSWORD": "${input:oracle-ro-password}"
+      }
+    }
+  }
+}

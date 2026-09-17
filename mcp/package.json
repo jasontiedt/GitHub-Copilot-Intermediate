@@ -1,0 +1,22 @@
+{
+  "name": "taskflow-oracle-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Read-only MCP server exposing the Oracle HR sample schema for the workshop lab.",
+  "scripts": {
+    "start": "tsx src/server.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "^2.0.0",
+    "oracledb": "^6.0.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/oracledb": "^7.0.3",
+    "tsx": "^4.0.0",
+    "typescript": "^5.6.0"
+  }
+}

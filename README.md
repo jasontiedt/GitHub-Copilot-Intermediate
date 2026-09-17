@@ -26,7 +26,7 @@ copilot-advanced-workshop/
 │   └── tests/
 ├── web/                             # React + TypeScript frontend (Vite)
 │   └── src/ (App, api client, components)
-└── modules/                         # the workshop (0–6)
+└── modules/                         # the workshop (0–7)
 ```
 
 ## 🚀 Run it (optional)
@@ -62,6 +62,7 @@ Work through the modules in order. Each is intermediate→advanced and **timebox
 | 4 | [Coding Agent at Scale](modules/04-coding-agent.md) | Agent-ready issues, custom agents, MCP, agent env | ~25 min |
 | 5 | [AI-Assisted Sprint Delegation](modules/05-sprint-delegation.md) | A Sunday-night batch that hands a sprint's issues to Copilot | ~30 min |
 | 6 | [Capstone: Roll It Out to Your Team](modules/06-capstone.md) | A rollout plan that ties it all together | ~30 min |
+| 7 | [Talk to a Database with MCP (Oracle)](modules/07-mcp-oracle.md) | A read-only Oracle MCP server + a database the agent can query | ~25 min |
 
 See the [module index](modules/README.md) for details. Times are the **core** path; each module's optional 🧧 stretch stages add ~10–18 min if you want the deeper hands-on.
 
