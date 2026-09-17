@@ -1,5 +1,5 @@
 # GitHub Copilot for Teams — Intermediate & Advanced Workshop
-
+ test
 A hands-on workshop that takes GitHub Copilot **beyond individual productivity** and into **team-scale practices**. You'll learn to standardize Copilot across a real project: effective project-wide **custom instructions**, a reusable **prompt library** for anyone who joins, **code-review mastery**, and **coding-agent** delegation — then roll it out to your whole team.
 
 > **Level:** Intermediate → Advanced. This workshop assumes you already use Copilot day-to-day (chat, inline, agent mode) and want to make it consistent and effective for a whole team.
