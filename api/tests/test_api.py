@@ -1,3 +1,4 @@
+import pytest
 from fastapi.testclient import TestClient
 
 from taskflow.app import app
@@ -14,13 +15,13 @@ def test_create_task_accepts_valid_priority():
     assert r.json()["priority"] == 5
 
 
-def test_create_task_rejects_priority_out_of_range():
-    for priority in (0, 6):
-        r = client.post(
-            "/tasks",
-            json={"title": "Bad task", "assignee": "dave", "priority": priority},
-        )
-        assert r.status_code == 422
+@pytest.mark.parametrize("priority", [0, 6, "high"])
+def test_create_task_rejects_invalid_priority(priority):
+    r = client.post(
+        "/tasks",
+        json={"title": "Bad task", "assignee": "dave", "priority": priority},
+    )
+    assert r.status_code == 422
 
 
 def test_update_status_accepts_valid_status():
