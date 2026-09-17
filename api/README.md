@@ -25,7 +25,8 @@ pytest                                             # optional: the thin test sui
 
 You'll practice on these in the review and agent modules — don't fix them yet:
 
-- **`top_priority`** sorts the *wrong direction* (`/focus` returns the **lowest** priority tasks).
+- ~~**`top_priority`** sorts the *wrong direction*~~ — fixed: `/focus` now returns the **highest**
+  priority tasks first, tie-broken by `id` ascending, and rejects a non-positive `n` with a 422.
 - **`update_status`** accepts *any* string — no validation against `todo|in_progress|done`.
 - **`create_task`** has a `TODO` and no priority-range validation.
 - Inconsistent typing/docstrings across `service.py`.

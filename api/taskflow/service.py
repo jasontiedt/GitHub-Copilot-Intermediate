@@ -36,6 +36,8 @@ def stats(store) -> dict:
 
 
 # Return the n highest-priority tasks (used by the "focus" view).
+# Sorted by priority descending (5 = highest first); ties are broken by id ascending.
+# Slicing returns every task when n exceeds the number of tasks.
 def top_priority(store, n):
-    ordered = sorted(store.all(), key=lambda t: t.priority)
+    ordered = sorted(store.all(), key=lambda t: (-t.priority, t.id))
     return ordered[:n]

@@ -66,4 +66,8 @@ def get_stats():
 
 @app.get("/focus")
 def get_focus(n: int = 3):
+    # FastAPI rejects non-integer query values before we get here; the issue
+    # requires 0/negative values to fail at the HTTP boundary too.
+    if n <= 0:
+        raise HTTPException(status_code=422, detail="n must be a positive integer")
     return [_dump(t) for t in service.top_priority(store, n)]
