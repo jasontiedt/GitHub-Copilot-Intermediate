@@ -1,6 +1,8 @@
+from typing import Literal
+
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from . import service
 from .store import TaskStore
@@ -18,15 +20,18 @@ app.add_middleware(
 store = TaskStore()
 
 
+Status = Literal["todo", "in_progress", "done"]
+
+
 class NewTask(BaseModel):
     title: str
     assignee: str
-    priority: int = 3
+    priority: int = Field(default=3, ge=1, le=5)
     tags: list[str] = []
 
 
 class StatusUpdate(BaseModel):
-    status: str
+    status: Status
 
 
 def _dump(t):
