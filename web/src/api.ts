@@ -21,3 +21,16 @@ export async function updateStatus(id: number, status: string) {
     body: JSON.stringify({ status }),
   });
 }
+
+export async function searchTasks(q: string): Promise<any> {
+  const res = await fetch('http://localhost:8000/tasks/search?q=' + q);
+  return res.json();
+}
+
+export async function bulkComplete(ids: any) {
+  await fetch('http://localhost:8000/tasks/bulk-complete', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ids }),
+  });
+}
